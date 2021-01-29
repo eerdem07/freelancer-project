@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,32 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'freelancer-project';
+
+  userName!: string
+  constructor(
+    public Auth: AuthService,
+    public router: Router
+  ) { }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    let user = JSON.parse(localStorage.getItem("user")!);
+    this.userName = user.displayName!
+  }
+
+  signOut() {
+    this.Auth.signOut().then(d => {
+      localStorage.removeItem("user")
+      this.router.navigate(['/login'])
+    })
+  }
+
+  sessionCheck() {
+    if (localStorage.getItem("user")) {
+      return true
+    } else {
+      return false
+    }
+  }
 }
