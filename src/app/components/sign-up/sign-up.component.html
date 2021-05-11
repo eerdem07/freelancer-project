@@ -30,10 +30,10 @@
               <input type="password" name="password" class="form-control" #password [(ngModel)]="user.password">
             </div>
           </div>
-          <div class="card-footer">
-            <input type="submit" value="Kayıt Ol" class="btn btn-outline-success btn-block"
+          <div class="card-footer align-self-center">
+            <input type="submit" value="Kayıt Ol" class="btn btn-outline-success btn-lg mx-5 "
               [disabled]="signUpForm.invalid">
-            <button class="btn btn-outline-primary btn-block" [routerLink]="['/login']">Giriş Yap</button>
+            <button class="btn btn-outline-primary btn-lg mx-5" [routerLink]="['/login']">Giriş Yap</button>
           </div>
         </div>
       </form>

@@ -1,3 +1,7 @@
+import { Category } from "./department";
+import { subCategory } from "./subCategory";
+import { subCategory2 } from "./subCategory2";
+
 export class User {
     key!: string;
     userID!: string;
@@ -6,9 +10,13 @@ export class User {
     telNo!: string;
     soyad!: string;
     mail!: string;
-    ozgecmis!: string;
-    yetenekler!: any;
-    points!: string;
-    rol!: "admin" | 'user';
-
+    ozgecmis?: string;
+    photoUrl?:string
+    university?: string;
+    bolum?:string;
+    altKategori?:string;
+    yetenekler?: string;
+    points?: string;
+    rol!: "admin" | 'user';;
+    type?:string;
 }

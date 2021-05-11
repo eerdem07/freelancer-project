@@ -1,6 +1,6 @@
 <div class="container-lg mt-5">
-  <div class="row  justify-content-center">
-    <div class="col-5">
+  <div class="row  justify-content-center align-self-center">
+    <div class="col-3">
       <form #loginForm="ngForm" (ngSubmit)="signIn(mail.value, password.value)">
         <div class="card mt-5">
           <div class="card-header text-center">
@@ -10,11 +10,11 @@
           </div>
           <div class="card-body">
             <div class="form-group">
-              <label>Mail:</label>
-              <input type="text" name="mail" class="form-control" #mail [(ngModel)]="user.mail">
+              <label>Mail</label>
+              <input type="text" name="mail" class="form-control " #mail [(ngModel)]="user.mail">
             </div>
             <div class="form-group">
-              <label>Şifre:</label>
+              <label>Şifre</label>
               <input type="password" name="password" class="form-control" #password [(ngModel)]="user.password">
             </div>
           </div>

@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'freelancer-project';
 
   userName!: string
+  uid?:string
   constructor(
     public Auth: AuthService,
     public router: Router
@@ -21,6 +22,7 @@ export class AppComponent {
     //Add 'implements OnInit' to the class.
     let user = JSON.parse(localStorage.getItem("user")!);
     this.userName = user.displayName!
+    this.uid = user.uid
   }
 
   signOut() {

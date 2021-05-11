@@ -1,26 +1,43 @@
 <div class="container-lg mt-5">
-    <div class="row  justify-content-center">
+    <div class="row  justify-content-center mt-5 mx-5">
         <div class="col-5">
-            <div class="card mt-5">
+            <div class="card">
                 <div class="card-header text-center">
                     <b>
-                        Profiliniz
+                      {{profil?.ad}} {{profil?.soyad}}
                     </b>
+                    <img src="">
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <div class="form-control">Ad: &nbsp;<b>{{profil?.ad}}</b>
-                        </div>
-                        <div class="form-control">Soyad: &nbsp;<b>{{profil?.soyad}}</b></div>
-                        <div class="form-control">Mail: &nbsp;<b>{{profil?.mail}}</b></div>
-                        <div class="form-control">Telefon Numarası: &nbsp;<b>{{profil?.telNo}}</b></div>
+                      <img class="card-img-top" src="{{profil?.photoUrl}}" alt="Card image cap">
+                        <div class="form-control  mt-2">Mail: &nbsp;<b>{{profil?.mail}}</b></div>
+                        <div class="form-control  mt-2">Telefon Numarası: &nbsp;<b>{{profil?.telNo}}</b></div>
+                        <div class="form-control  mt-2">Üniversite: &nbsp;<b>{{profil?.university}}</b></div>
+                        <div class="form-control  mt-2">Bölüm: &nbsp;<b>{{profil?.bolum}}</b></div>
+                        <div class="form-control  mt-2">Alt Kateogri: &nbsp;<b>{{profil?.altKategori}}</b></div>
+                        <div class="form-control  mt-2">Yetenek: &nbsp;<b>{{profil?.yetenekler}}</b></div>
+
+
                     </div>
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-outline-warning btn-block" (ngClick)="editAccount()">Düzenle</button>
-                    <button class="btn btn-outline-danger btn-block" (ngClick)="deleteAccount()">Hesabı Sil</button>
+                    <button class="btn btn-outline-danger btn-block mx-5" (ngClick)="deleteAccount()">Hesabı Sil</button>
+                    <button class="btn btn-outline-primary btn-block" [routerLink]="['/messenger',messageRoomTest2?.key]">Mesaj Gönder</button>
                 </div>
             </div>
+        </div>
+        <div class="col-7">
+          <div class="card">
+            <div class="card-header">
+              Öz Geçmiş
+            </div>
+            <div class="card-body">
+              {{profil?.ozgecmis}}
+            </div>
+          </div>
+
         </div>
     </div>
 </div>

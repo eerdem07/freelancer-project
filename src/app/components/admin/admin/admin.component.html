@@ -1,0 +1,64 @@
+<div class="container mt-2">
+  <div class="row justify-content-center">
+    <h3>ADMİN PANEL</h3>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">Kategori Adı</div>
+        <div class="card-body">
+          <input type="text" class="form-control" #name>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline-primary" (click)="addCategory(name.value)">Kategori Ekle</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">Alt Kategori Ekle</div>
+        <div class="card-body">
+          <select class="form-select" aria-label="Default select example" (change)="selectedListKey($event.target)">
+            <option  *ngFor="let categori of categories">{{categori?.name}}</option>
+          </select>
+          <div class="card-body">
+            <input type="text" class="form-control" #subCategoryName>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline-primary" (click)="addSubCategory(subCategoryName.value)">Alt Kategori Ekle</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">Bölüm Ekle</div>
+        <div class="card-body">
+            <select class="form-select" aria-label="Default select example" (change)="selectedListKey($event.target)">
+              <option  *ngFor="let categori of categories">{{categori?.name}}</option>
+            </select>
+            <div class="card-body">
+              <select class="form-select" aria-label="Default select example" (change)="selectedListKey2($event.target)">
+                <option  *ngFor="let subCategory of subCategories">{{subCategory?.name}}</option>
+              </select>
+            </div>
+            <div class="card-body">
+              <input type="text" class="form-control" #subCategoryName2>
+            </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline-primary" (click)="addSubCategory2(subCategoryName2.value)">Alt Kategori Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">Üniversite Ekle</div>
+      <div class="card-body">
+        <input type="text" class="form-control" #universityName>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-outline-primary" (click)="addUniversity(universityName.value)">Kategori Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>

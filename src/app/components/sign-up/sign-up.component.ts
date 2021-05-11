@@ -44,7 +44,7 @@ export class SignUpComponent implements OnInit {
 
   addAccount() {
     this.realtime.addAccount({ ...this.user, rol: "user", }).then(d => {
-      this.router.navigate(['/'])
+      this.router.navigate(['/profile-update/selection'])
     })
   }
 

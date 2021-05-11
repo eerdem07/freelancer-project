@@ -1,0 +1,44 @@
+<div class="container mt-2">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <h3>Kategori Seçiniz</h3>
+      <select class="form-select" #category (change)="selectedListKey($event.target)">
+        <option *ngFor="let category of categories">{{category?.name}}</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <h3>Bölüm Seçiniz</h3>
+      <select class="form-select" #subCategory (change)="selectedListKey2($event.target)">
+        <option *ngFor="let subCategory of subCategories">{{subCategory?.name}}</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <h3>Yetenek Seçiniz</h3>
+      <select class="form-select" #subCategory2>
+        <option *ngFor="let subCategory2 of subCategories2">{{subCategory2?.name}}</option>
+      </select>
+    </div>
+    <button class="btn btn-primary mt-2" (click)="listProfile(category.value, subCategory.value, subCategory2.value)" >Ara</button>
+  </div>
+  <h5 class="text-center mt-5">İş Verenlerimiz</h5>
+  <hr>
+  <div class="row mt-2 justify-content-center">
+    <div class="col-3" *ngFor="let profile of profiles">
+      <div class="card" >
+        <div class="card-header">
+         <h6 class="align-center text-center">{{profile.type}}</h6><br>
+          {{profile.ad}}
+          {{profile.soyad}}
+        </div>
+        <div class="card-body">
+          <img src="{{profile.photoUrl}}" class="justify-content-center" style="width: 150px;height: 150px;">
+        </div>
+        <div class="card-footer">
+          <div class="d-grid gap-2 mt-2">
+            <button class="btn btn-primary" [routerLink]="['profile',profile.userID]">Detay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import  firebase from 'firebase/app';
 import { User } from '../models/user';
 
 
@@ -29,4 +30,6 @@ export class AuthService {
       return false
     }
   }
+
 }
+
