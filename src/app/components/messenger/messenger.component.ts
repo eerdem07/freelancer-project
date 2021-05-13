@@ -45,23 +45,24 @@ export class MessengerComponent implements OnInit {
     this.listMessage()
   }
 
-  listMessage(){
-    this.MessageService.listMessageByChannelRoomId(this.roomId).snapshotChanges().subscribe(data=>{
-      data.forEach(k=>{
-        const x = { ...k.payload.toJSON(), key:k.key}
-        this.messageList.push(x as Message)
-        this.messageList2 = this.messageList[this.messageList.length -1]
-        console.log(this.messageList2)
-      })
-    })
-  }
-
-
   // listMessage(){
-  //   this.MessageService.listMessageByChannelRoomId(this.roomId).subscribe(data=>{
-  //     console.log(data)
+  //   this.MessageService.listMessageByChannelRoomId(this.roomId).snapshotChanges().subscribe(data=>{
+  //     data.forEach(k=>{
+  //       const x = { ...k.payload.toJSON(), key:k.key}
+  //       this.messageList.push(x as Message)
+  //       this.messageList2 = this.messageList[this.messageList.length -1]
+  //       console.log(this.messageList)
+  //     })
   //   })
   // }
+
+
+  listMessage(){
+    this.MessageService.listMessageByChannelRoomId(this.roomId).subscribe(data=>{
+      this.messageRoom = data
+      console.log(this.messageRoom)
+    })
+  }
 
   sendMessage(body:any){
     let tarih = new Date()

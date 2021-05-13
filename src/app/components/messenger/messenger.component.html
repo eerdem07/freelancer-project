@@ -2,19 +2,29 @@
   <div class="row" >
     Alıcı UID: {{aliciuid}} <br>
   Gönderici UID: {{gondericiuid}} <br>
-  <div class="card mx-2 mt-2" *ngFor="let message of messageList2">
 
-    <div class="card-body" >
-      <p class="lead" >
-        Mesaj: {{message?.body}}
-      </p>
+  <!-- <select class="form-select">
+    <option *ngFor="let message of messageRoom?.messages">{{message?.body}}</option>
+  </select> -->
+
+  <div class="card mx-2 mt-2" *ngFor="let message of messageRoom?.messages">
+    <div class="card-header">
+      {{message?.gondericiuid}}
     </div>
-  </div>
+    <div class="card-body">
+      {{message?.body}}
+    </div>
+    <div class="card-footer">
+
+    </div>
+
   </div>
 
 
-  <div class="input-group mt-2 mb-3 align-bottom">
-    <input type="text" class="form-control" placeholder="Mesajınızı Yazınız." aria-label="Recipient's username" aria-describedby="button-addon2" #message>
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="sendMessage(message.value)">Gönder</button>
+  <div class="row">
+    <div class="input-group mt-2 mb-3 align-bottom">
+      <input type="text" class="form-control" placeholder="Mesajınızı Yazınız." aria-label="Recipient's username" aria-describedby="button-addon2" #message>
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="sendMessage(message.value)">Gönder</button>
+    </div>
   </div>
 </div>

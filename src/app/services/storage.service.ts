@@ -17,10 +17,9 @@ export class StorageService {
 
   uploadDoc(doc:Doc){
     let date = new Date()
-    const docPath = this.basePath + '/' + doc.name
+    const docPath = this.basePath + '/' + doc.files.name
     const storageRef = this.storage.ref(docPath)
     const uploadTask = this.storage.upload(docPath,doc.files)
-    console.log(doc.files.name)
     uploadTask.snapshotChanges().pipe(
       finalize(()=>{
         storageRef.getDownloadURL().subscribe(urlPath=>{
@@ -42,6 +41,14 @@ export class StorageService {
 
   listDocs(){
     return this.db.list(this.basePath)
+  }
+
+  // checkMessageRoom(aliciuid:any){
+  //   return this.db.list("MessageRoom", q=>q.orderByChild("aliciuid").equalTo(aliciuid))
+  // }
+
+  listDocsByUid(uid:any){
+    return this.db.list("Docs", q=>q.orderByChild("uid").equalTo(uid))
   }
 
   removeDoc(doc:Doc){

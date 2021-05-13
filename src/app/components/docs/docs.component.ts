@@ -14,6 +14,8 @@ export class DocsComponent implements OnInit {
   docs : Doc[] = []
   files!:FileList
 
+  uid!:string
+
   nowUser: User = new User()
   constructor(
     private storage:StorageService,
@@ -21,16 +23,28 @@ export class DocsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let user = JSON.parse(localStorage.getItem("user")!);
+    this.uid = user.uid
     this.listDoc()
   }
 
+  // listDoc(){
+  //   this.storage.listDocs().snapshotChanges().subscribe(data=>{
+  //     this.docs = []
+  //     data.forEach(document=>{
+  //       const y = {...document.payload.toJSON(), key:document.key}
+  //       this.docs.push(y as Doc)
+  //     })
+  //   })
+  // }
+
   listDoc(){
-    this.storage.listDocs().snapshotChanges().subscribe(data=>{
-      this.docs = []
-      data.forEach(document=>{
-        const y = {...document.payload.toJSON(), key:document.key}
-        this.docs.push(y as Doc)
-      })
+    this.storage.listDocsByUid(this.uid).snapshotChanges().subscribe(data=>{
+      this.docs=[]
+        data.forEach(document=>{
+          const y = { ...document.payload.toJSON(), key:document.key}
+          this.docs.push(y as Doc)
+        })
     })
   }
 
@@ -40,6 +54,7 @@ export class DocsComponent implements OnInit {
 
   uploadDoc(){
     let doc = new Doc()
+    doc.uid = this.uid
     doc.files = this.files[0]
     this.storage.uploadDoc(doc).subscribe(
       p=>{

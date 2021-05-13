@@ -35,30 +35,31 @@ constructor(
     this.messageRef.push(message)
   }
 
-  updateRoom(messageRoom:any){
-    this.db.list("MessageRoom").update(messageRoom.key,messageRoom)
+  async updateRoom(messageRoom:any){
+    await this.db.list("MessageRoom").update(messageRoom.key,messageRoom)
   }
 
-  listMessageByChannelRoomId(channelRoomId:any){
-    return this.db.list("Message", q=>q.orderByChild("channelRoomID").equalTo(channelRoomId))
-  }
-
-  // listMessageByChannelRoomId(key:any){
-  //   return this.db.object<MessageRoom>("/MessageRoom/" + key).snapshotChanges().pipe(
-  //     map((change)=>{
-  //       const messageRoom:MessageRoom = {...change.payload.val()!, key:change.key as string}
-  //       this.db.list<Message>(this.dbMessage,ref=>ref.orderByChild('channelRoomId').equalTo(messageRoom.key as string)).snapshotChanges().pipe(
-  //         map(changes=>{
-  //           return changes.map(change=>{
-  //             const message = { ...change.payload.val()!, key:change.key} as Message
-  //             return message
-  //           })
-  //         })
-  //       ).subscribe(messages => messageRoom.messages = messages)
-  //       return messageRoom
-  //     })
-  //   )
+  // listMessageByChannelRoomId(channelRoomId:any){
+  //   return this.db.list("Message", q=>q.orderByChild("channelRoomID").equalTo(channelRoomId))
   // }
+
+  listMessageByChannelRoomId(key:any){
+    return this.db.object<MessageRoom>("/MessageRoom/" + key).snapshotChanges().pipe(
+      map((change)=>{
+        const messageRoom:MessageRoom = {...change.payload.val()!, key:change.key as string}
+
+        this.db.list<Message>(this.dbMessage,ref=>ref.orderByChild('channelRoomID').equalTo(messageRoom.key as string)).snapshotChanges().pipe(
+          map(changes=>{
+            return changes.map(change=>{
+              const message = { ...change.payload.val()!, key:change.key} as Message
+              return message
+            })
+          })
+        ).subscribe(messages => messageRoom.messages = messages)
+        return messageRoom
+      })
+    )
+  }
 
 
 
