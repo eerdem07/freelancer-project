@@ -1,9 +1,11 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/models/department';
 import { subCategory } from 'src/app/models/subCategory';
 import { subCategory2 } from 'src/app/models/subCategory2';
 import { University } from 'src/app/models/university';
+import { User } from 'src/app/models/user';
 import { RealtimeService } from 'src/app/services/realtime.service';
 
 @Component({
@@ -25,12 +27,30 @@ export class AdminComponent implements OnInit {
   key: Category = new Category()
   key2: subCategory = new subCategory()
 
+  profil!: User
+
   university:University= new University()
 
-  constructor(public realtime: RealtimeService)  { }
+  constructor(
+    public realtime: RealtimeService,
+    public route: ActivatedRoute,
+    public router: Router)  { }
 
   ngOnInit(): void {
     this.listCategory()
+    this.listByProfile()
+  }
+
+  listByProfile() {
+    this.realtime.listProfileByUserID(this.realtime.suankiKullanici.uid).snapshotChanges().subscribe(profiller => {
+      profiller.forEach(profil => {
+        const q = { ...profil.payload.val(), key: profil.key }
+        this.profil = (q as User)
+        if(this.profil.rol=="user"){
+          this.router.navigate(['/'])
+        }
+      })
+    })
   }
 
   async listCategory(){

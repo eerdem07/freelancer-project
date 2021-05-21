@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import  firebase from 'firebase/app';
 import { User } from '../models/user';
+import { RealtimeService } from './realtime.service';
 
 
 @Injectable({
@@ -9,7 +11,7 @@ import { User } from '../models/user';
 })
 export class AuthService {
 
-  constructor(public Auth: AngularFireAuth) { }
+  constructor(public Auth: AngularFireAuth, public db: AngularFireDatabase, public realtime: RealtimeService) { }
 
   signIn(mail: string, password: string) {
     return this.Auth.signInWithEmailAndPassword(mail, password)
@@ -30,6 +32,9 @@ export class AuthService {
       return false
     }
   }
+
+
+
 
 }
 

@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   profil!: User
   result: any;
 
+  simdikikullaniciuid?:string
   gondericiuid?: string;
   aliciuid?:string
 
@@ -45,6 +46,7 @@ export class ProfileComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem("user")!);
     this.gondericiuid = user.uid
     this.adsoyad = user.displayName
+    this.simdikikullaniciuid =  this.realtime.suankiKullanici.uid
     this.route.params.subscribe(p => {
       this.uid = p.uid
     })
@@ -70,8 +72,8 @@ export class ProfileComponent implements OnInit {
         this.messageRoomTest.push(q as MessageRoom)
         const a = this.messageRoomTest.filter(el=> el.gondericiuid == this.gondericiuid)
         this.messageRoomTest2 = a[0]
-        this.MessageService.updateRoom(this.messageRoomTest2)
         console.log(this.messageRoomTest2)
+        this.MessageService.updateRoom(this.messageRoomTest2)
       })
       if(!(this.messageRoomTest2.aliciuid == this.aliciuid && this.messageRoomTest2.gondericiuid == this.gondericiuid)){
         this.messageRoom.aliciuid = this.aliciuid as string
@@ -80,7 +82,6 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
-
 
   editAccount() {
     this.result.process = true

@@ -25,6 +25,7 @@
       </ul>
     </div>
     <div class="d-grid gap-2 d-md-flex mx-auto">
+      <button class="btn btn-primary" *ngIf="checkAdmin()" [routerLink]="['admin']">Admin Panel</button>
       <button class="btn btn-primary" *ngIf="!sessionCheck()" [routerLink]="['login']">Giriş Yap</button>
       <button class="btn btn-success ml-2" *ngIf="sessionCheck()" [routerLink]="['docs']">Dosya Yükle</button>
       <button class="btn btn-success ml-2" *ngIf="!sessionCheck()" [routerLink]="['signup']">Kayıt Ol</button>

@@ -1,11 +1,11 @@
 <div class="container mt-2">
   <div class="row" >
     Alıcı UID: {{aliciuid}} <br>
-  Gönderici UID: {{gondericiuid}} <br>
+    Gönderici UID: {{gondericiuid}} <br>
 
-  <!-- <select class="form-select">
+  <select class="form-select">
     <option *ngFor="let message of messageRoom?.messages">{{message?.body}}</option>
-  </select> -->
+  </select>
 
   <div class="card mx-2 mt-2" *ngFor="let message of messageRoom?.messages">
     <div class="card-header">
@@ -14,12 +14,7 @@
     <div class="card-body">
       {{message?.body}}
     </div>
-    <div class="card-footer">
-
-    </div>
-
   </div>
-
 
   <div class="row">
     <div class="input-group mt-2 mb-3 align-bottom">

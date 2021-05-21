@@ -17,14 +17,14 @@
                         <div class="form-control  mt-2">Bölüm: &nbsp;<b>{{profil?.bolum}}</b></div>
                         <div class="form-control  mt-2">Alt Kateogri: &nbsp;<b>{{profil?.altKategori}}</b></div>
                         <div class="form-control  mt-2">Yetenek: &nbsp;<b>{{profil?.yetenekler}}</b></div>
-
-
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-outline-warning btn-block" (ngClick)="editAccount()">Düzenle</button>
-                    <button class="btn btn-outline-danger btn-block mx-5" (ngClick)="deleteAccount()">Hesabı Sil</button>
-                    <button class="btn btn-outline-primary btn-block" [routerLink]="['/messenger',messageRoomTest2?.key]">Mesaj Gönder</button>
+                  <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-outline-warning" *ngIf="aliciuid == simdikikullaniciuid" (ngClick)="editAccount()">Düzenle</button>
+                    <button class="btn btn-outline-danger" *ngIf="aliciuid == simdikikullaniciuid" (ngClick)="deleteAccount()">Hesabı Sil</button>
+                    <button class="btn btn-outline-primary" [routerLink]="['/messenger',messageRoomTest2?.key]">Mesaj Gönder</button>
+                  </div>
                 </div>
             </div>
         </div>

@@ -21,13 +21,11 @@ export class MessengerComponent implements OnInit {
 
   message: Message = new Message()
   messageList: Message[] = []
-  messageList2: Message = new Message()
 
   messageRoom: MessageRoom = new MessageRoom()
-  messageRoom2: MessageRoom = new MessageRoom()
 
-  messageRoomTest2:MessageRoom = new MessageRoom()
-  messageRoomTest:MessageRoom[] = []
+  // messageRoomTest2:MessageRoom = new MessageRoom()
+  // messageRoomTest:MessageRoom[] = []
 
   key!:string;
   constructor(
@@ -45,21 +43,10 @@ export class MessengerComponent implements OnInit {
     this.listMessage()
   }
 
-  // listMessage(){
-  //   this.MessageService.listMessageByChannelRoomId(this.roomId).snapshotChanges().subscribe(data=>{
-  //     data.forEach(k=>{
-  //       const x = { ...k.payload.toJSON(), key:k.key}
-  //       this.messageList.push(x as Message)
-  //       this.messageList2 = this.messageList[this.messageList.length -1]
-  //       console.log(this.messageList)
-  //     })
-  //   })
-  // }
-
-
   listMessage(){
     this.MessageService.listMessageByChannelRoomId(this.roomId).subscribe(data=>{
       this.messageRoom = data
+      this.aliciuid = this.messageRoom.aliciuid
       console.log(this.messageRoom)
     })
   }
@@ -72,6 +59,17 @@ export class MessengerComponent implements OnInit {
     this.message.channelRoomID = this.roomId
     this.MessageService.sendMessage(this.message)
   }
+
+   // listMessage(){
+  //   this.MessageService.listMessageByChannelRoomId(this.roomId).snapshotChanges().subscribe(data=>{
+  //     data.forEach(k=>{
+  //       const x = { ...k.payload.toJSON(), key:k.key}
+  //       this.messageList.push(x as Message)
+  //       this.messageList2 = this.messageList[this.messageList.length -1]
+  //       console.log(this.messageList)
+  //     })
+  //   })
+  // }
 
   // listMessage(){
   //   this.MessageService.listMessage().snapshotChanges().subscribe(data=>{

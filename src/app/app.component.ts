@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from './models/user';
 import { AuthService } from './services/auth.service';
+import { RealtimeService } from './services/realtime.service';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +14,19 @@ export class AppComponent {
 
   userName!: string
   uid?:string
+  profil!: User
+  rol!:string
   constructor(
     public Auth: AuthService,
-    public router: Router
+    public router: Router,
+    public realtime: RealtimeService
   ) { }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     let user = JSON.parse(localStorage.getItem("user")!);
     this.userName = user.displayName!
     this.uid = user.uid
+    this.listProfile()
   }
 
   signOut() {
@@ -39,4 +43,25 @@ export class AppComponent {
       return false
     }
   }
+
+  listProfile(){
+    this.realtime.listProfileByUserID(this.uid as string).snapshotChanges().subscribe(profiller => {
+      profiller.forEach(profil => {
+        const q = { ...profil.payload.val(), key: profil.key }
+        this.profil = (q as User)
+        this.rol = this.profil.rol
+      })
+    })
+  }
+
+  checkAdmin(){
+    if(this.rol == "admin"){
+      return true
+    }
+    else{
+      return false
+    }
+  }
+
+
 }

@@ -31,7 +31,11 @@ const routes: Routes = [
 
   {
     path: 'messenger/:channelRoomId',
-    component: MessengerComponent
+    component: MessengerComponent,
+    canActivate:[AngularFireAuthGuard],
+    data:{
+      authGuardPipe:redirectLogin
+    }
   },
   {
     path: 'profile/:uid',
@@ -43,19 +47,35 @@ const routes: Routes = [
   },
   {
     path: 'profile-update',
-    loadChildren: () => import("./components/profile-update/profile-update.module").then(m=> m.ProfileUpdateModule)
+    loadChildren: () => import("./components/profile-update/profile-update.module").then(m=> m.ProfileUpdateModule),
+    canActivate:[AngularFireAuthGuard],
+    data:{
+      authGuardPipe:redirectLogin
+    }
   },
   {
     path: 'admin',
-    loadChildren: () => import("./components/admin/admin.module").then(m=>m.AdminModule)
+    loadChildren: () => import("./components/admin/admin.module").then(m=>m.AdminModule),
+    canActivate:[AngularFireAuthGuard],
+    data:{
+      authGuardPipe:redirectLogin
+    }
   },
   {
     path: 'list-profile',
-    loadChildren: () => import("./components/list-profile/list-profile.module").then(m=> m.ListProfileModule)
+    loadChildren: () => import("./components/list-profile/list-profile.module").then(m=> m.ListProfileModule),
+    canActivate:[AngularFireAuthGuard],
+    data:{
+      authGuardPipe:redirectLogin
+    }
   },
   {
     path: 'docs',
-    loadChildren:()=> import("./components/docs/docs.module").then(m=>m.DocsModule)
+    loadChildren:()=> import("./components/docs/docs.module").then(m=>m.DocsModule),
+    canActivate:[AngularFireAuthGuard],
+    data:{
+      authGuardPipe:redirectLogin
+    }
   },
 
 ];
