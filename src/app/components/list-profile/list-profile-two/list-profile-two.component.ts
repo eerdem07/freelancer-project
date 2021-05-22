@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/models/department';
 import { subCategory } from 'src/app/models/subCategory';
 import { subCategory2 } from 'src/app/models/subCategory2';
@@ -20,59 +21,14 @@ export class ListProfileTwoComponent implements OnInit {
 
   profiles:User[] = []
 
-  constructor(public realtime: RealtimeService) { }
+  constructor(public realtime: RealtimeService,
+    public router: Router) { }
   ngOnInit() {
     this.listCategory()
   }
 
-
-
-  listCategory(){
-    this.realtime.listCategory().snapshotChanges().subscribe(data=>{
-     data.forEach(k=>{
-       const x = { ...k.payload.toJSON(), key: k.key}
-       this.categories.push(x as Category)
-     })
-   })
-  }
-
-  selectedListKey(event:any){
-    this.realtime.listCategoryByName(event.value).snapshotChanges().subscribe(data=>{
-      data.forEach(data=>{
-        const x = { ...data.payload.toJSON(), key: data.key}
-        this.key = (x as Category)
-      })
-      this.listSubCategory()
-    })
-  }
-
-  listSubCategory(){
-    this.realtime.listSubCategory(this.key.key).snapshotChanges().subscribe(data=>{
-     data.forEach(k=>{
-       const x = { ...k.payload.toJSON(),key: k.key}
-       this.subCategories.push(x as subCategory)
-      })
-    })
-  }
-
-  listSubCategory2(){
-    this.subCategories2 = []
-  this.realtime.listSubCategory2(this.key.key, this.key2.key).snapshotChanges().subscribe(data=>{
-   data.forEach(k=>{
-     const x = { ...k.payload.toJSON(),key:k.key}
-     this.subCategories2.push(x as subCategory2)
-     })
-    })
-  }
-
-  selectedListKey2(event:any){
-    this.realtime.listSubCategoryByName(event.value, this.key.key).snapshotChanges().subscribe(data=>{
-      data.forEach(data=>{
-        const x = { ...data.payload.toJSON(), key: data.key}
-        this.key2 = (x as subCategory)
-        this.listSubCategory2()
-      })
-    })
+  navigateProfile(uid:any){
+    this.router.navigate(['/profile',uid])
   }
 
   listProfile(categoryName:any, subCategoryName:any, subcategory2Name:any){
@@ -106,6 +62,57 @@ export class ListProfileTwoComponent implements OnInit {
       })
     }
   }
+
+  listCategory(){
+    this.realtime.listCategory().snapshotChanges().subscribe(data=>{
+     data.forEach(k=>{
+       const x = { ...k.payload.toJSON(), key: k.key}
+       this.categories.push(x as Category)
+     })
+   })
+  }
+
+  selectedListKey(event:any){
+    this.realtime.listCategoryByName(event.value).snapshotChanges().subscribe(data=>{
+      data.forEach(data=>{
+        const x = { ...data.payload.toJSON(), key: data.key}
+        this.key = (x as Category)
+      })
+      this.listSubCategory()
+    })
+  }
+
+  listSubCategory(){
+    this.subCategories = []
+    this.realtime.listSubCategory(this.key.key).snapshotChanges().subscribe(data=>{
+     data.forEach(k=>{
+       const x = { ...k.payload.toJSON(),key: k.key}
+       this.subCategories.push(x as subCategory)
+      })
+    })
+  }
+
+  listSubCategory2(){
+  this.subCategories2 = []
+  this.realtime.listSubCategory2(this.key.key, this.key2.key).snapshotChanges().subscribe(data=>{
+   data.forEach(k=>{
+     const x = { ...k.payload.toJSON(),key:k.key}
+     this.subCategories2.push(x as subCategory2)
+     })
+    })
+  }
+
+  selectedListKey2(event:any){
+    this.realtime.listSubCategoryByName(event.value, this.key.key).snapshotChanges().subscribe(data=>{
+      data.forEach(data=>{
+        const x = { ...data.payload.toJSON(), key: data.key}
+        this.key2 = (x as subCategory)
+        this.listSubCategory2()
+      })
+    })
+  }
+
+
 
 
 }

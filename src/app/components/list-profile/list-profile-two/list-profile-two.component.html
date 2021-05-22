@@ -37,7 +37,8 @@
         </div>
         <div class="card-footer">
           <div class="d-grid gap-2 mt-2">
-            <button class="btn btn-primary" [routerLink]="['profile',profile.userID]">Detay</button>
+            <button class="btn btn-primary" (click)="navigateProfile(profile.userID)">Detay</button>
+            <!-- [routerLink]="['profile',profile.userID]" -->
           </div>
         </div>
       </div>

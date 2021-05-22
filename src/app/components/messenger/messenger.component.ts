@@ -54,6 +54,7 @@ export class MessengerComponent implements OnInit {
   sendMessage(body:any){
     let tarih = new Date()
     this.message.gondericiuid = this.gondericiuid
+    this.message.aliciuid = this.aliciuid
     this.message.body = body
     this.message.kayTarih = tarih.getTime().toString()
     this.message.channelRoomID = this.roomId

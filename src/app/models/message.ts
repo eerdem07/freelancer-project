@@ -3,6 +3,7 @@ export class Message{
   body?:string
   kayTarih?:string
   gondericiuid?:string
+  aliciuid?:string
   channelRoomID?:string
 }
 

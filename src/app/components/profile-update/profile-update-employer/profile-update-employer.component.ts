@@ -37,6 +37,7 @@ export class ProfileUpdateEmployerComponent implements OnInit {
     this.listUniversity()
   }
 
+
   listCategory(){
     this.realtime.listCategory().snapshotChanges().subscribe(data=>{
      data.forEach(k=>{

@@ -8,6 +8,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MessengerComponent } from './components/messenger/messenger.component';
 import { DocsComponent } from './components/docs/docs.component';
 import { DocumentComponent } from './components/document/document.component';
+import { MyMessageComponent } from './components/my-message/my-message.component';
 
 const redirectLogin = () => redirectUnauthorizedTo(['login'])
 const routes: Routes = [
@@ -32,6 +33,14 @@ const routes: Routes = [
   {
     path: 'messenger/:channelRoomId',
     component: MessengerComponent,
+    canActivate:[AngularFireAuthGuard],
+    data:{
+      authGuardPipe:redirectLogin
+    }
+  },
+  {
+    path: 'my-message',
+    component: MyMessageComponent,
     canActivate:[AngularFireAuthGuard],
     data:{
       authGuardPipe:redirectLogin

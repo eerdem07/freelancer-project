@@ -39,9 +39,6 @@ constructor(
     await this.db.list("MessageRoom").update(messageRoom.key,messageRoom)
   }
 
-  // listMessageByChannelRoomId(channelRoomId:any){
-  //   return this.db.list("Message", q=>q.orderByChild("channelRoomID").equalTo(channelRoomId))
-  // }
 
   listMessageByChannelRoomId(key:any){
     return this.db.object<MessageRoom>("/MessageRoom/" + key).snapshotChanges().pipe(
@@ -61,7 +58,7 @@ constructor(
     )
   }
 
-  
+
 
 
 

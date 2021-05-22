@@ -28,10 +28,15 @@ export class ListProfileOneComponent implements OnInit {
   nowProfile2: User = new User()
 
   constructor(public realtime: RealtimeService,
-    public router: Router) { }
+    public router: Router,) { }
 
   ngOnInit() {
     this.listCategory()
+  }
+
+
+  navigateProfile(uid:any){
+    this.router.navigate(['/profile',uid])
   }
 
   // listProfile(categoryName:any){

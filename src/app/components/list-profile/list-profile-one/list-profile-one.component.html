@@ -29,7 +29,7 @@
   <h5 class="text-center mt-5">Çalışanlarımız</h5>
   <hr>
   <div class="row mt-2 justify-content-center">
-    <div class="col-3" *ngFor="let profile of profiles">
+    <div class="col-3 col-md-3 col-" *ngFor="let profile of profiles">
       <div class="card" >
         <div class="card-header">
           <h6 class="text-center">{{profile.type}} <br></h6>
@@ -43,8 +43,9 @@
         </div>
         <div class="card-footer">
           <div class="d-grid gap-2 mt-2">
-            <button class="btn btn-primary" [routerLink]="['profile',profile.userID]">Detay</button>
+            <button class="btn btn-primary" (click)="navigateProfile(profile.userID)" >Detay</button>
           </div>
+          <!-- [routerLink]="['profile',profile.userID]" -->
         </div>
       </div>
     </div>
