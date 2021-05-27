@@ -1,51 +1,14 @@
+
 <div class="container mt-5">
-  <div class="card" *ngFor="let room of messageRoom">
-    <h5 class="card-header">{{room.gondericiuid}}</h5>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <button class="btn btn-primary" (click)="goMessenger(room.key)">Go somewhere</button>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="container mt-5">
-  <div class="row">
-    <div class="col-4">
-      <div class="card mb-3" style="max-width: 450px;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="..." alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-        </div>
+  <h5>Mesajlarım</h5>
+ <div class="row">
+  <ng-container *ngFor="let room of messageRoom" >
+    <div class="card mt-2" *ngIf="!(room.messages?.length == 0)">
+      <div class="card-header">
+        <img src="{{ listProfilePhoto(room)}}" class="img-thumbnail" style="width: 75px; height: 75px;">
+        {{ listUserName(room)}}
+        <button class="btn btn-primary " (click)="goMessenger(room.key)">Detay</button>
       </div>
     </div>
-    <div class="col-8">
-      <app-messenger></app-messenger>
-    </div>
-  </div>
-</div> -->
+  </ng-container>
+ </div>

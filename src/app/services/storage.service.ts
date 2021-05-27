@@ -43,10 +43,6 @@ export class StorageService {
     return this.db.list(this.basePath)
   }
 
-  // checkMessageRoom(aliciuid:any){
-  //   return this.db.list("MessageRoom", q=>q.orderByChild("aliciuid").equalTo(aliciuid))
-  // }
-
   listDocsByUid(uid:any){
     return this.db.list("Docs", q=>q.orderByChild("uid").equalTo(uid))
   }

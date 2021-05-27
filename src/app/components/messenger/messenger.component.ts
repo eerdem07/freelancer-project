@@ -1,3 +1,5 @@
+import { RealtimeService } from 'src/app/services/realtime.service';
+import { User } from 'src/app/models/user';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'src/app/models/message';
@@ -17,12 +19,25 @@ export class MessengerComponent implements OnInit {
   aliciuid?: string;
   gondericiuid?: string;
 
+  gondericifoto?:string
+
+  aliciadi?:string
+  gondericiadi?:string
+
+
   roomId?: string
 
   message: Message = new Message()
   messageList: Message[] = []
 
   messageRoom: MessageRoom = new MessageRoom()
+
+  profileSender:User[] = []
+  profileGetter:User[] = []
+
+  // profileSender: User = new User()
+  // profileGetter: User = new User()
+
 
   // messageRoomTest2:MessageRoom = new MessageRoom()
   // messageRoomTest:MessageRoom[] = []
@@ -31,7 +46,8 @@ export class MessengerComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public router: Router,
-    public MessageService: MessageService
+    public MessageService: MessageService,
+    public realtime: RealtimeService
     ) { }
 
   ngOnInit() {
@@ -41,13 +57,15 @@ export class MessengerComponent implements OnInit {
       this.roomId = p.channelRoomId
     })
     this.listMessage()
+    this.listProfileSender()
+
   }
 
   listMessage(){
     this.MessageService.listMessageByChannelRoomId(this.roomId).subscribe(data=>{
       this.messageRoom = data
       this.aliciuid = this.messageRoom.aliciuid
-      console.log(this.messageRoom)
+      this.listProfileGetter()
     })
   }
 
@@ -58,8 +76,46 @@ export class MessengerComponent implements OnInit {
     this.message.body = body
     this.message.kayTarih = tarih.getTime().toString()
     this.message.channelRoomID = this.roomId
+    this.message.gondericiadi = this.gondericiadi
+    this.message.gondericifoto = this.gondericifoto
     this.MessageService.sendMessage(this.message)
   }
+
+
+
+  listProfileSender(){
+    this.MessageService.listProfileByUserID(this.gondericiuid).subscribe(data=>{
+      this.gondericiadi = data[0].ad
+      this.gondericifoto = data[0].photoUrl
+    })
+  }
+
+  listProfileGetter(){
+    this.MessageService.listProfileByUserID(this.aliciuid).subscribe(data=>{
+      this.aliciadi = data[0].ad
+    })
+  }
+
+  changeColor(messages:Message){
+    console.log(messages)
+    if(messages.gondericiuid == this.gondericiuid){
+      return "alert-primary"
+    } else if(messages.aliciuid == this.gondericiuid) {
+      return "alert-success"
+    } else{
+      return "alert-warning"
+    }
+  }
+
+  // listProfileSender(){
+  //   this.realtime.listProfileByUserID(this.gondericiuid as string).snapshotChanges().subscribe(profiles=>{
+  //     profiles.forEach(profile=>{
+  //       const q = { ...profile.payload.toJSON(), key:profile.key}
+  //       this.profileSender.push(q as User)
+  //       console.log(this.profileGetter.ad)
+  //     })
+  //   })
+  // }
 
    // listMessage(){
   //   this.MessageService.listMessageByChannelRoomId(this.roomId).snapshotChanges().subscribe(data=>{

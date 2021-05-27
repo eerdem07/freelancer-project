@@ -3,6 +3,7 @@
     <div class="col-md-3">
       <h3>Kategori Seçiniz</h3>
       <select class="form-select" (change)="selectedListKey($event.target)" #category>
+        <!-- <option>Lütfen Seçiniz.</option> -->
         <option *ngFor="let category of categories">{{category?.name}}</option>
       </select>
       <!-- <button class="btn btn-primary toast-bottom-center mt-2">Ara</button> -->

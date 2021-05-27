@@ -19,9 +19,11 @@
             </div>
           </div>
           <div class="card-footer">
-            <input type="submit" value="Giriş Yap" class="btn btn-outline-success btn-block"
+            <div class="d-grid gap-2">
+              <input type="submit" value="Giriş Yap" class="btn btn-outline-success btn-block"
               [disabled]="loginForm.invalid">
             <button class="btn btn-outline-primary btn-block" [routerLink]="['/signup']">Kayıt Ol</button>
+            </div>
           </div>
         </div>
       </form>

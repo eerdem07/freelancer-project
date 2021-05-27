@@ -56,6 +56,7 @@ export class ProfileUpdatePersonelComponent implements OnInit {
  }
 
  listSubCategory(){
+  this.subCategories = []
    this.realtime.listSubCategory(this.key.key).snapshotChanges().subscribe(data=>{
     data.forEach(k=>{
       const x = { ...k.payload.toJSON(),key: k.key}
@@ -65,6 +66,7 @@ export class ProfileUpdatePersonelComponent implements OnInit {
 }
 
  listSubCategory2(){
+  this.subCategories2 = []
    this.realtime.listSubCategory2(this.key.key, this.key2.key).snapshotChanges().subscribe(data=>{
     data.forEach(k=>{
       const x = { ...k.payload.toJSON(),key:k.key}

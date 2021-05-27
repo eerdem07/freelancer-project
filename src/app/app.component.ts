@@ -32,6 +32,7 @@ export class AppComponent {
   signOut() {
     this.Auth.signOut().then(d => {
       localStorage.removeItem("user")
+      localStorage.clear()
       this.router.navigate(['/login'])
     })
   }

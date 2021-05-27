@@ -28,7 +28,7 @@ export class ProfileUpdateSelectionComponent implements OnInit {
         this.nowUser.type = "Employer"
         this.realtime.updateAccount(this.nowUser)
     })
-    this.router.navigate(['/profile'])
+    this.router.navigate(['/profile-update/employer'])
   }
 
   updatePersonel(){

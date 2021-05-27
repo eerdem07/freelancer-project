@@ -5,5 +5,9 @@ export class MessageRoom{
   key2!:string
   aliciuid!:string
   gondericiuid!:string
+  gondericiadi!:string
+  gondericifoto!:string
+  aliciadi!:string
+  alicifoto!:string
   messages?: Message[]
 }

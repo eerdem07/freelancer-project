@@ -26,11 +26,19 @@ export class ProfileComponent implements OnInit {
   gondericiuid?: string;
   aliciuid?:string
 
+  gondericiadi?:string
+  gondericifoto?:string
+
+  alicifoto?:string
+  aliciadi?:string
+
   message: Message = new Message()
   messageRoom: MessageRoom = new MessageRoom()
 
   messageRoomTest2:MessageRoom = new MessageRoom()
   messageRoomTest:MessageRoom[] = []
+
+  messageRoomTest3:MessageRoom = new MessageRoom()
 
   key!:string;
 
@@ -49,8 +57,10 @@ export class ProfileComponent implements OnInit {
     this.simdikikullaniciuid =  this.realtime.suankiKullanici.uid
     this.route.params.subscribe(p => {
       this.uid = p.uid
+      this.aliciuid = this.uid
     })
     this.listByProfile()
+    this.listProfileSender()
   }
 
   listByProfile() {
@@ -58,34 +68,47 @@ export class ProfileComponent implements OnInit {
       profiller.forEach(profil => {
         const q = { ...profil.payload.val(), key: profil.key }
         this.profil = (q as User)
-        this.aliciuid = this.profil.userID
+        this.alicifoto = this.profil.photoUrl
+        this.aliciadi = this.profil.ad
       })
       this.checkMessageRoom()
     })
   }
 
+  listProfileSender(){
+    this.MessageService.listProfileByUserID(this.gondericiuid).subscribe(data=>{
+      this.gondericiadi = data[0].ad
+      this.gondericifoto = data[0].photoUrl
+    })
+  }
+
   checkMessageRoom(){
     console.log(this.aliciuid,this.gondericiuid)
-    this.MessageService.checkMessageRoom(this.aliciuid).snapshotChanges().subscribe(datas=>{
+    this.MessageService.checkMessageRoom(this.aliciuid as string).snapshotChanges().subscribe(datas=>{
       datas.forEach(data=>{
         const q = { ...data.payload.toJSON(), key:data.key}
         this.messageRoomTest.push(q as MessageRoom)
         const a = this.messageRoomTest.filter(el=> el.gondericiuid == this.gondericiuid)
         this.messageRoomTest2 = a[0]
-        console.log(this.messageRoomTest2)
-        this.MessageService.updateRoom(this.messageRoomTest2)
+        // this.MessageService.updateRoom(this.messageRoomTest2)
       })
-      if(!(this.messageRoomTest2.aliciuid == this.aliciuid && this.messageRoomTest2.gondericiuid == this.gondericiuid)){
+      if( !((this.messageRoomTest2?.aliciuid == this.aliciuid && this.messageRoomTest2?.gondericiuid == this.gondericiuid))){
         this.messageRoom.aliciuid = this.aliciuid as string
         this.messageRoom.gondericiuid =  this.gondericiuid as string
+        this.messageRoom.gondericiadi = this.gondericiadi as string
+        this.messageRoom.gondericifoto = this.gondericifoto as string
+        this.messageRoom.alicifoto = this.alicifoto as string
+        this.messageRoom.aliciadi = this.aliciadi as string
         this.MessageService.addMessageRoom(this.messageRoom)
       }
     })
   }
 
+
   editAccount() {
-    this.result.process = true
-    this.result.message = this.toast.warning("Eklenecektir...", "Uyarı!")
+    // this.result.process = true
+    // this.result.message = this.toast.warning("Aktarılıyorsunuz.", "Uyarı!")
+    this.router.navigate(['/profile-update/selection'])
   }
 
   deleteAccount() {

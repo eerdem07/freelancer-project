@@ -21,9 +21,9 @@
                 </div>
                 <div class="card-footer">
                   <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="btn btn-outline-warning" *ngIf="aliciuid == simdikikullaniciuid" (ngClick)="editAccount()">Düzenle</button>
-                    <button class="btn btn-outline-danger" *ngIf="aliciuid == simdikikullaniciuid" (ngClick)="deleteAccount()">Hesabı Sil</button>
-                    <button class="btn btn-outline-primary" [routerLink]="['/messenger',messageRoomTest2?.key]">Mesaj Gönder</button>
+                    <button class="btn btn-outline-warning" *ngIf="aliciuid == simdikikullaniciuid" (click)="editAccount()">Düzenle</button>
+                    <button class="btn btn-outline-danger" *ngIf="aliciuid == simdikikullaniciuid" (click)="deleteAccount()">Hesabı Sil</button>
+                    <button class="btn btn-outline-primary" *ngIf="simdikikullaniciuid !== uid" [routerLink]="['/messenger',messageRoomTest2?.key]">Mesaj Gönder</button>
                   </div>
                 </div>
             </div>
@@ -37,7 +37,6 @@
               {{profil?.ozgecmis}}
             </div>
           </div>
-
         </div>
     </div>
 </div>
