@@ -1,6 +1,6 @@
 <div class="container-lg mt-5">
   <div class="row justify-content-center">
-    <div class="col-5">
+    <div class="col-12 col-sm-9 col-md-6 col-lg-3">
       <form #signUpForm="ngForm" (ngSubmit)="signUp()">
         <div class="card mt-3">
           <div class="card-header text-center">
@@ -30,10 +30,10 @@
               <input type="password" name="password" class="form-control" #password [(ngModel)]="user.password">
             </div>
           </div>
-          <div class="card-footer align-self-center">
-            <input type="submit" value="Kayıt Ol" class="btn btn-outline-success btn-lg mx-5 "
-              [disabled]="signUpForm.invalid">
-            <button class="btn btn-outline-primary btn-lg mx-5" [routerLink]="['/login']">Giriş Yap</button>
+          <div class="d-grid gap-2">
+            <input type="submit" value="Kayıt Ol" class="btn btn-outline-success  mx-4 "
+              [disabled]="signUpForm.invalid" [disabled]="signUpForm.invalid">
+            <button class="btn btn-outline-primary mx-4" [routerLink]="['/login']">Giriş Yap</button>
           </div>
         </div>
       </form>

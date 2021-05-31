@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="alert alert-info mt-5 text-center" role="alert">
+    Dakikar içerisinde İş bulun!
+  </div>
+  <div class="row justify-content-center">
+    <div class="card col-5">
+      <div class="card-header">
+        <h3 class="text-center">İş Yaratın!</h3>
+      </div>
+      <div class="card-body">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Başlık Giriniz.</span>
+          <input type="text" class="form-control" #name>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="input-group">
+          <span class="input-group-text" >Açıklama giriniz.</span>
+          <textarea class="form-control" #desc></textarea>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Kategori</label>
+          <select class="form-select" id="inputGroupSelect01" (change)="selectedKey($event.target)" #category>
+            <option>Lütfen Seçiniz</option>
+            <option  *ngFor="let categori of jobCategories">{{categori?.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Kategori</label>
+          <select class="form-select" id="inputGroupSelect01" #subCategory>
+            <option>Lütfen Seçiniz</option>
+          <option  *ngFor="let subCategory of jobSubCategories">{{subCategory?.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="input-group">
+          <label class="input-group-text" for="inputGroupFile02">Fotoğraf Seç</label>
+          <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="selectDoc($event)">
+          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="uploadDoc()">Fotoğrafı Yükle</button>
+        </div>
+        <!-- <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupFile01">Fotoğraf Seçiniz.</label>
+          <input type="file" class="form-control" id="inputGroupFile01" (change)="selectDoc($event)">
+        </div> -->
+      </div>
+      <div class="card-footer">
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" (click)="addJob(name.value, desc.value, category.value, subCategory.value)" [disabled]="percent !==100">Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

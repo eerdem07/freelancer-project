@@ -34,7 +34,6 @@ export class ProfileUpdateEmployerComponent implements OnInit {
 
   ngOnInit() {
     this.listCategory()
-    this.listUniversity()
   }
 
 
@@ -43,15 +42,6 @@ export class ProfileUpdateEmployerComponent implements OnInit {
      data.forEach(k=>{
        const x = { ...k.payload.toJSON(), key: k.key}
        this.categories.push(x as Category)
-     })
-   })
- }
-
- listUniversity(){
-   this.realtime.listUniversity().snapshotChanges().subscribe(data=>{
-     data.forEach(k=>{
-       const x = { ...k.payload.toJSON(), key:k.key}
-       this.universities.push(x as University)
      })
    })
  }

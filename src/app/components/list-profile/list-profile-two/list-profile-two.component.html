@@ -3,28 +3,33 @@
     <div class="col-md-3">
       <h3>Kategori Seçiniz</h3>
       <select class="form-select" #category (change)="selectedListKey($event.target)">
+        <option>Lütfen Seçiniz.</option>
         <option *ngFor="let category of categories">{{category?.name}}</option>
       </select>
     </div>
     <div class="col-md-3">
       <h3>Bölüm Seçiniz</h3>
       <select class="form-select" #subCategory (change)="selectedListKey2($event.target)">
+        <option>Lütfen Seçiniz.</option>
         <option *ngFor="let subCategory of subCategories">{{subCategory?.name}}</option>
       </select>
     </div>
     <div class="col-md-3">
       <h3>Yetenek Seçiniz</h3>
       <select class="form-select" #subCategory2>
+        <option>Lütfen Seçiniz.</option>
         <option *ngFor="let subCategory2 of subCategories2">{{subCategory2?.name}}</option>
       </select>
     </div>
-    <button class="btn btn-primary mt-2" (click)="listProfile(category.value, subCategory.value, subCategory2.value)" >Ara</button>
+    <div class="d-grid gap-2 mt-2">
+      <button class="btn btn-primary" (click)="listProfile(category.value, subCategory.value, subCategory2.value)" >Ara</button>
+    </div>
   </div>
   <h5 class="text-center mt-5">İş Verenlerimiz</h5>
   <hr>
   <div class="row mt-2 justify-content-center">
-    <div class="col-3" *ngFor="let profile of profiles">
-      <div class="card" >
+    <div class="col-9 col-sm-9 col-md-3 col-lg-3" >
+      <div class="card" *ngFor="let profile of profiles">
         <div class="card-header">
           <h6 class="text-center">{{profile.type}} <br></h6>
           <h3 class="text-center">
@@ -38,7 +43,6 @@
         <div class="card-footer">
           <div class="d-grid gap-2 mt-2">
             <button class="btn btn-primary" (click)="navigateProfile(profile.userID)">Detay</button>
-            <!-- [routerLink]="['profile',profile.userID]" -->
           </div>
         </div>
       </div>

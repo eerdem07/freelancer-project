@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { MessengerComponent } from './components/messenger/messenger.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ import { MyMessageComponent } from './components/my-message/my-message.component
     MyMessageComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

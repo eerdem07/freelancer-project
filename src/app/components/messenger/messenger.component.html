@@ -3,7 +3,7 @@
   <!-- Alıcı UID: {{aliciuid}} <br>
   Gönderici UID: {{gondericiuid}} <br> -->
 
-  <div style="height:700px;width:100%;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+  <div style="height:600px;width:100%;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
     <div class="card mx-2 mt-2" *ngFor="let message of messageRoom?.messages" [ngClass]="changeColor(message)">
       <div class="card-header mt-2" >
         <img src="{{message?.gondericifoto}}" class="img-thumbnail" style="width: 75px; height: 75px;">

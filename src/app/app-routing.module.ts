@@ -1,3 +1,5 @@
+import { MyJobComponent } from './components/my-job/my-job.component';
+import { JobComponent } from './components/job/job.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
@@ -43,7 +45,7 @@ const routes: Routes = [
     canActivate:[AngularFireAuthGuard],
     data:{
       authGuardPipe:redirectLogin
-    }
+  }
   },
   {
     path: 'profile/:uid',
@@ -85,6 +87,38 @@ const routes: Routes = [
       authGuardPipe:redirectLogin
     }
   },
+  {
+    path:'post-job',
+    loadChildren:()=>import("./components/post-job/post-job.module").then(m=>m.PostJobModule),
+    canActivate:[AngularFireAuthGuard],
+    data:{
+      authGuardPipe:redirectLogin
+    }
+  },
+  {
+    path:'list-job',
+    loadChildren:()=>import("./components/list-job/list-job.module").then(m=>m.ListJobModule),
+    // canActivate:[AngularFireAuthGuard],
+    // data:{
+    //   authGuardPipe:redirectLogin
+    // }
+  },
+  {
+    path:'job/:id',
+    component:JobComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectLogin
+    }
+  },
+  {
+    path:'my-job',
+    component:MyJobComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectLogin
+    }
+  }
 
 ];
 

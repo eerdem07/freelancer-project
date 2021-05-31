@@ -1,6 +1,10 @@
+import { subJobCategory } from './../models/subJobCategory';
+import { JobCategory } from './../models/jobCategory';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { map } from 'rxjs/operators';
 import { Category } from '../models/department';
+import { Job } from '../models/job';
 import { subCategory } from '../models/subCategory';
 import { subCategory2 } from '../models/subCategory2';
 import { University } from '../models/university';
@@ -16,10 +20,12 @@ export class RealtimeService {
   private dbUsers = '/Users'
   private dbCategory = '/Category'
   private dbUniveristy = '/University'
+  private dbJobCategory = '/JobCategory'
 
   userRef!: AngularFireList<User>
   categoryRef!: AngularFireList<Category>
   universityRef!: AngularFireList<University>
+  jobCategoryRef!: AngularFireList<Job>
 
   constructor(
     public db: AngularFireDatabase
@@ -27,8 +33,11 @@ export class RealtimeService {
     this.userRef = db.list(this.dbUsers)
     this.categoryRef = db.list(this.dbCategory)
     this.universityRef = db.list(this.dbUniveristy)
+    this.jobCategoryRef = db.list(this.dbJobCategory)
 
   }
+
+  // User İşlemleri Başlangıç
 
   get suankiKullanici() {
     return JSON.parse(localStorage.getItem('user') as string) as firebase.default.User;
@@ -38,29 +47,95 @@ export class RealtimeService {
     return this.db.list("/Users", q => q.orderByChild("userID").equalTo(this.suankiKullanici.uid))
   }
 
-  addAccount(user: User) {
-    return this.userRef.push(user)
+  async addAccount(user: User) {
+    await this.userRef.push(user)
   }
 
-  updateAccount(user: User) {
-    return this.userRef.update(user.key, user)
+  async updateAccount(user: User) {
+    await this.userRef.update(user.key, user)
   }
 
   listProfileByUserID(userID: string) {
     return this.db.list<User>("/Users", q => q.orderByChild("userID").equalTo(userID))
   }
 
-  addCategory(category: Category) {
-    // return this.categoryRef.push(category)
-    return this.db.list<Category>('/Category').push(category)
+  // User İşlemleri End
+
+  // Job İşlemleri Başlangıç
+
+  async addJob(job:Job){
+    await this.db.list('/Job').push(job)
   }
 
-  addSubCategory(subCategory: subCategory, key: any) {
-    return this.db.list<subCategory>("/Category/" + key).push(subCategory)
+  async addJobCategory(JobCategory:JobCategory){
+    await this.jobCategoryRef.push(JobCategory)
   }
 
-  addSubCategory2(subCategory2: subCategory2, key1: any, key2: any) {
-    return this.db.list<subCategory2>("/Category/" + key1 + "/" + key2).push(subCategory2)
+  async addJobSubCategory(subJobCategory:subJobCategory, key:any){
+    await this.db.list("/JobCategory/" + key).push(subJobCategory)
+  }
+
+  listjob(){
+    return this.db.list<Job>("/Job").snapshotChanges().pipe(
+      map((changes)=>{
+        return changes.map(change=>{
+          const job = { key:change.key, ...change.payload.val()!} as Job
+          return job
+        })
+      })
+    )
+  }
+
+  listJobByKey(key:string){
+    return this.db.object<Job>("/Job/" + key).snapshotChanges().pipe(
+      map((change)=>{
+        const job:Job = { ...change.payload.val()!, key:change.key} as Job
+        return job
+      })
+    )
+  }
+
+  listJobByUid(uid:any){
+    return this.db.list("/Job",q=> q.orderByChild("uid").equalTo(uid))
+  }
+
+  // listJobByUid(uid:any){
+  //   return this.db.list<Job>("/Job", q=> q.orderByChild(uid).equalTo(uid)).snapshotChanges().pipe(
+  //     map((changes)=>{
+  //       return changes.map(change=>{
+  //         const jobs = { key:change.key, ...change.payload.val()!} as Job
+  //         return jobs
+  //       })
+  //     })
+  //   )
+  // }
+
+  listJobCategory(){
+    return this.jobCategoryRef
+  }
+
+  listJobSubCategory(key:string){
+    return this.db.list("/JobCategory/"+ key)
+  }
+
+  listJobCategoryByName(name:string){
+    return this.db.list("JobCategory", q=> q.orderByChild("name").equalTo(name))
+  }
+
+  // Job İşlemleri Bitiş
+
+  // Kategori İşlemleri Başlangıç
+
+  async addCategory(category: Category) {
+    await this.db.list<Category>('/Category').push(category)
+  }
+
+  async addSubCategory(subCategory: subCategory, key: any) {
+    await this.db.list<subCategory>("/Category/" + key).push(subCategory)
+  }
+
+  async addSubCategory2(subCategory2: subCategory2, key1: any, key2: any) {
+    await this.db.list<subCategory2>("/Category/" + key1 + "/" + key2).push(subCategory2)
   }
 
   listCategory() {
@@ -72,7 +147,6 @@ export class RealtimeService {
   }
 
   listSubCategory(key: any) {
-    // return this.db.list("/Category/" +key, q=> q.orderByKey().equalTo(key))
     return this.db.list<subCategory>("/Category/" + key)
   }
 
@@ -88,13 +162,13 @@ export class RealtimeService {
     return this.db.list("/Category/" + key1 + "/" + key2)
   }
 
-  addUniversty(university: University) {
-    return this.universityRef.push(university)
+  // Kategori İşlemleri Bitiş
+
+  async addUniversty(university: University) {
+    await this.universityRef.push(university)
   }
 
-  test() {
-    return this.db.list("Users", q => q.orderByChild("yetenekler").equalTo("Node.js") && q.orderByChild("bolum").equalTo("Web Developer"))
-  }
+  // List Profile By Category
 
   listProfileByCategoryPersonel(categoryName: any) {
     return this.db.list("/Users", q => q.orderByChild("bolum").equalTo(categoryName))
@@ -120,6 +194,8 @@ export class RealtimeService {
     return this.db.list("/Users", q => q.orderByChild("yetenekler").equalTo(categoryName))
   }
 
+
+  // End
   listProfile() {
     return this.db.list<User>("/Users", q => q.orderByChild("userID").limitToFirst(4))
   }

@@ -1,0 +1,35 @@
+<div class="container mt-2">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h3>Kategori Seçiniz</h3>
+      <select class="form-select" (change)="selectedListKey($event.target)" #category>
+        <option>Lütfen Seçiniz.</option>
+        <option *ngFor="let category of jobCategories">{{category?.name}}</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <h3>Bölüm Seçiniz</h3>
+      <select class="form-select" #subCategory>
+        <option>Lütfen Seçiniz.</option>
+        <option *ngFor="let subCategory of jobSubCategories">{{subCategory?.name}}</option>
+      </select>
+    </div>
+    <div class="d-grid gap-2 mt-2">
+      <button class="btn btn-primary" (click)="listJob(category.value, subCategory.value)" >Ara</button>
+    </div>
+  </div>
+  <h5 class="text-center mt-5">İşler</h5>
+  <hr>
+  <div class="row mt-2 justify-content-center">
+    <div class="col-9 col-sm-9 col-md-3 col-lg-3" *ngFor="let job of jobs">
+      <div class="card" style="width: 18rem;"  >
+        <img src="{{job.photoUrl}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{job.name}}</h5>
+          <p class="card-text">{{job.desc}}</p>
+          <button class="btn btn-primary" (click)="navigateJob(job.key)">Detay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

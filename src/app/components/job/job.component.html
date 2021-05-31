@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-8">
+
+      <div class="card mb-3">
+        <img src="{{job?.photoUrl}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{job?.name}}</h5>
+          <p class="card-text">{{job?.desc}}</p>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
+
+  </div>
+  <div class="col-4">
+    <div class="card" style="width: 20rem;">
+      <img src="{{job?.user?.photoUrl}}" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{job?.user?.ad}} {{job?.user?.soyad}}</h5>
+        <!-- <p class="card-text">{{job?.user?.ozgecmis}}</p> -->
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item text-center">{{job?.user?.bolum}}</li>
+        <li class="list-group-item text-center">{{job?.user?.altKategori}}</li>
+        <li class="list-group-item text-center">{{job?.user?.yetenekler}}</li>
+      </ul>
+      <div class="card-body">
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button class="btn btn-primary" (click)="navigateProfile(job?.user?.userID)">Detay</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</div>

@@ -28,30 +28,19 @@ export class ListProfileOneComponent implements OnInit {
   nowProfile2: User = new User()
 
   constructor(public realtime: RealtimeService,
-    public router: Router,) { }
+    public router: Router) { }
 
   ngOnInit() {
     this.listCategory()
   }
 
-
   navigateProfile(uid:any){
     this.router.navigate(['/profile',uid])
   }
 
-  // listProfile(categoryName:any){
-  //     this.realtime.listProfileByCategory(categoryName).snapshotChanges().subscribe(data=>{
-  //       data.forEach(k=>{
-  //         const x = {...k.payload.toJSON(),key:k.key}
-  //         this.profiles.push(x as User)
-  //         console.log(this.profiles[this.profiles.length-1])
-  //       })
-  //     })
-  // }
-
   listProfile(categoryName:any, subCategoryName:any, subcategory2Name:any){
+    this.profiles = []
     if(subcategory2Name != '' && subCategoryName != '' && subcategory2Name != ''){
-      this.profiles = []
       this.realtime.listProfileByCategoryPersonel(categoryName).snapshotChanges().subscribe(data=>{
         data.forEach(k=>{
           const x = { ...k.payload.toJSON(), key:k.key}
@@ -60,7 +49,6 @@ export class ListProfileOneComponent implements OnInit {
         })
       })
     } else if( subcategory2Name != '' && subCategoryName != '' && subcategory2Name == ''){
-      this.profiles = []
       this.realtime.listProfileByCategoryPersonel(subCategoryName).snapshotChanges().subscribe(data=>{
         data.forEach(k=>{
           const x = { ...k.payload.toJSON(), key:k.key}
@@ -69,7 +57,6 @@ export class ListProfileOneComponent implements OnInit {
         })
       })
     } else {
-      this.profiles = []
       this.realtime.listProfileByCategoryPersonel(subcategory2Name).snapshotChanges().subscribe(data=>{
         data.forEach(k=>{
           const x = { ...k.payload.toJSON(), key:k.key}
@@ -78,15 +65,6 @@ export class ListProfileOneComponent implements OnInit {
         })
       })
     }
-
-
-    // this.realtime.listProfileByCategory(categoryName).snapshotChanges().subscribe(data=>{
-    //   data.forEach(k=>{
-    //     const x = {...k.payload.toJSON(),key:k.key}
-    //     this.profiles.push(x as User)
-    //     console.log(this.profiles[this.profiles.length-1])
-    //   })
-    // })
 }
 
 

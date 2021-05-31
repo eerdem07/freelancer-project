@@ -30,16 +30,6 @@ export class DocsComponent implements OnInit {
     this.listDoc()
   }
 
-  // listDoc(){
-  //   this.storage.listDocs().snapshotChanges().subscribe(data=>{
-  //     this.docs = []
-  //     data.forEach(document=>{
-  //       const y = {...document.payload.toJSON(), key:document.key}
-  //       this.docs.push(y as Doc)
-  //     })
-  //   })
-  // }
-
   listDoc(){
     this.storage.listDocsByUid(this.uid).snapshotChanges().subscribe(data=>{
       this.docs=[]
