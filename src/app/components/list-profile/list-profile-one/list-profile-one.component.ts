@@ -45,7 +45,7 @@ export class ListProfileOneComponent implements OnInit {
         data.forEach(k=>{
           const x = { ...k.payload.toJSON(), key:k.key}
           this.profiles.push(x as User)
-          this.profiles = this.profiles.filter(el=> el.type == "Personel")
+          this.profiles = this.profiles.filter(el=> el.type == "Personel" && el.rol !== 'admin')
         })
       })
     } else if( subcategory2Name != '' && subCategoryName != '' && subcategory2Name == ''){
@@ -53,7 +53,7 @@ export class ListProfileOneComponent implements OnInit {
         data.forEach(k=>{
           const x = { ...k.payload.toJSON(), key:k.key}
           this.profiles.push(x as User)
-          this.profiles = this.profiles.filter(el=> el.type == "Personel")
+          this.profiles = this.profiles.filter(el=> el.type == "Personel" && el.rol !== 'admin')
         })
       })
     } else {
@@ -61,7 +61,7 @@ export class ListProfileOneComponent implements OnInit {
         data.forEach(k=>{
           const x = { ...k.payload.toJSON(), key:k.key}
           this.profiles.push(x as User)
-          this.profiles = this.profiles.filter(el=> el.type == "Personel")
+          this.profiles = this.profiles.filter(el=> el.type == "Personel" && el.rol !== 'admin')
         })
       })
     }

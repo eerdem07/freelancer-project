@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "freelancer-project"
+  "defaultProject": "freelancer-project",
+  "cli": {
+    "analytics": "4dcd1359-b81d-4ad4-aedb-7ce400928e7d"
+  }
 }
