@@ -3,7 +3,7 @@
    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
      <div class="card">
        <div class="card-header text-center">
-         <h2>İş veren Profili Güncelle</h2>
+         <h2>İşveren Profili Güncelle</h2>
         </div>
        <div class="card-body">
         <h5>Kategori Seçiniz</h5>
@@ -21,13 +21,18 @@
             <option>Lütfen Seçiniz.</option>
             <option *ngFor="let subCategory2 of subCategories2">{{subCategory2?.name}}</option>
           </select>
-           <label><h5>Kendinizi Tanıtın</h5></label>
-           <textarea class="form-control" name="ozgecmis" rows="5" #ozgecmis ngModel [(ngModel)]="nowUser.ozgecmis"></textarea>
-           <div class="card-footer">
-           <button class="btn toast-bottom-center btn-primary" (click)="updateProfile(category.value, subCategory.value, subcategory2.value, ozgecmis.value)">Güncelle</button>
-          </div>
        </div>
    </div>
+   <div class="card mt-2">
+     <div class="card-body">
+      <label><h5>Kendinizi Tanıtın</h5></label>
+      <textarea class="form-control" name="ozgecmis" rows="5" #ozgecmis ngModel [(ngModel)]="nowUser.ozgecmis"></textarea>
+     </div>
+   </div>
+
+   <div class="d-grid gap-2 col-12 mx-auto mt-2">
+    <button class="btn btn-primary" (click)="updateProfile(category.value, subCategory.value, subcategory2.value, ozgecmis.value)">Güncelle</button>
+  </div>
   </div>
  </div>
  </div>

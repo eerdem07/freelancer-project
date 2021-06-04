@@ -32,12 +32,10 @@ export class ListJobComponent implements OnInit {
     if(categoryName !== 'Lütfen Seçiniz.' && subCategoryName !== 'Lütfen Seçiniz.'){
       this.realtime.listjob().subscribe(data=>{
         this.jobs = data.filter(el=> el.subCategory == subCategoryName)
-        console.log(this.jobs)
       })
     } else if (categoryName !== 'Lütfen Seçiniz.'){
       this.realtime.listjob().subscribe(data=>{
         this.jobs = data.filter(el=> el.category == categoryName)
-        console.log(this.jobs)
       })
     }
   }

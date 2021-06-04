@@ -1,3 +1,4 @@
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { MyJobComponent } from './components/my-job/my-job.component';
 import { JobComponent } from './components/job/job.component';
 import { NgModule } from '@angular/core';
@@ -15,11 +16,7 @@ const redirectLogin = () => redirectUnauthorizedTo(['login'])
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: {
-      authGuardPipe: redirectLogin
-    }
+    component: HomeComponent
   },
   {
     path: 'login',
@@ -30,7 +27,6 @@ const routes: Routes = [
     path: 'signup',
     component: SignUpComponent
   },
-
   {
     path: 'messenger/:channelRoomId',
     component: MessengerComponent,
@@ -45,7 +41,7 @@ const routes: Routes = [
     canActivate:[AngularFireAuthGuard],
     data:{
       authGuardPipe:redirectLogin
-  }
+    }
   },
   {
     path: 'profile/:uid',
@@ -118,7 +114,12 @@ const routes: Routes = [
     data: {
       authGuardPipe: redirectLogin
     }
+  },
+  {
+    path:'reset-password',
+    component:ResetPasswordComponent
   }
+
 
 ];
 

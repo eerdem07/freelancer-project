@@ -46,14 +46,16 @@ export class PostJobComponent implements OnInit {
   }
 
   addJob(name:string, desc:string, category:string, subCategory:string){
+    let tarih = Date()
     this.job.name = name
     this.job.desc = desc
     this.job.category = category
     this.job.subCategory = subCategory
     this.job.user = this.profile
     this.job.uid = this.realtime.suankiKullanici.uid
+    this.job.date = tarih
     this.realtime.addJob(this.job)
-    this.router.navigate([''])
+    this.router.navigate(['my-job'])
   }
 
   uploadDoc(){

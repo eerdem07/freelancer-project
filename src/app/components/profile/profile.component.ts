@@ -83,14 +83,12 @@ export class ProfileComponent implements OnInit {
   }
 
   checkMessageRoom(){
-    console.log(this.aliciuid,this.gondericiuid)
     this.MessageService.checkMessageRoom(this.aliciuid as string).snapshotChanges().subscribe(datas=>{
       datas.forEach(data=>{
         const q = { ...data.payload.toJSON(), key:data.key}
         this.messageRoomTest.push(q as MessageRoom)
         const a = this.messageRoomTest.filter(el=> el.gondericiuid == this.gondericiuid)
         this.messageRoomTest2 = a[0]
-        // this.MessageService.updateRoom(this.messageRoomTest2)
       })
       if( !((this.messageRoomTest2?.aliciuid == this.aliciuid && this.messageRoomTest2?.gondericiuid == this.gondericiuid))){
         this.messageRoom.aliciuid = this.aliciuid as string

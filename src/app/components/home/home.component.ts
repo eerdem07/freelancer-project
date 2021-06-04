@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
       data.forEach(k=>{
         const x = { ...k.payload.toJSON(), key:k.key}
         this.profiles.push(x as User)
+        this.profiles= this.profiles.filter(el=>el.rol !== "admin")
       })
     })
   }

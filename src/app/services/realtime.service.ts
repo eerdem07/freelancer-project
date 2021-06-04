@@ -99,16 +99,10 @@ export class RealtimeService {
     return this.db.list("/Job",q=> q.orderByChild("uid").equalTo(uid))
   }
 
-  // listJobByUid(uid:any){
-  //   return this.db.list<Job>("/Job", q=> q.orderByChild(uid).equalTo(uid)).snapshotChanges().pipe(
-  //     map((changes)=>{
-  //       return changes.map(change=>{
-  //         const jobs = { key:change.key, ...change.payload.val()!} as Job
-  //         return jobs
-  //       })
-  //     })
-  //   )
-  // }
+  async deleteJob(key:string){
+    console.log(key)
+    await this.db.object("Job/" + key).remove()
+  }
 
   listJobCategory(){
     return this.jobCategoryRef
@@ -197,6 +191,6 @@ export class RealtimeService {
 
   // End
   listProfile() {
-    return this.db.list<User>("/Users", q => q.orderByChild("userID").limitToFirst(4))
+    return this.db.list<User>("/Users", q => q.orderByChild("userID").limitToFirst(10))
   }
 }

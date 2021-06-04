@@ -1,12 +1,11 @@
 <div class="container">
-    <img src="https://byteknolog.net/wp-content/uploads/2020/10/become-a-freelancer-with-bannersnack.png" style="height: 50%;" width="95%">
+    <img src="https://byteknolog.net/wp-content/uploads/2020/10/become-a-freelancer-with-bannersnack.png" class="mt-2" style="height: 50%; border-radius: 20px;" width="95%">
     <hr>
     <h5 class="text-center">Çalışanlarımız</h5>
     <hr>
-    <div class="row mt-2  ">
-      <div class="col-12 col-sm-9 col-md-6 col-lg-3" *ngFor="let profile of profiles">
-
-        <div class="card" style="width: 15.7rem;">
+    <div class="row mt-2">
+      <div class="col-8 col-sm-8 col-md-6 col-lg-3" *ngFor="let profile of profiles">
+        <div class="card mt-2" style="width: 15.7rem;" >
           <img src="{{profile.photoUrl}}" class="card-img-top" style="width: 250px; height: 250px;">
           <div class="card-body">
             <h6 class="card-title text-center">{{profile.type}}</h6>
@@ -22,22 +21,6 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="card" >
-          <div class="card-header text-center">
-           <h6 class="text-center">{{profile.type}}</h6><br>
-            <h5>{{profile.ad}}
-              {{profile.soyad}}</h5>
-          </div>
-          <div class="card-body align-self-center">
-            <img class="img-thumbnail" src="{{profile.photoUrl}}" style="width: 250px; height: 250px;">
-          </div>
-          <div class="card-footer">
-            <div class="d-grid gap-2 mt-2">
-              <button class="btn btn-primary" [routerLink]="['profile',profile.userID]">Detay</button>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
 </div>

@@ -97,7 +97,6 @@ export class MessengerComponent implements OnInit {
   }
 
   changeColor(messages:Message){
-    console.log(messages)
     if(messages.gondericiuid == this.gondericiuid){
       return "alert-primary"
     } else if(messages.aliciuid == this.gondericiuid) {
@@ -106,69 +105,5 @@ export class MessengerComponent implements OnInit {
       return "alert-warning"
     }
   }
-
-  // listProfileSender(){
-  //   this.realtime.listProfileByUserID(this.gondericiuid as string).snapshotChanges().subscribe(profiles=>{
-  //     profiles.forEach(profile=>{
-  //       const q = { ...profile.payload.toJSON(), key:profile.key}
-  //       this.profileSender.push(q as User)
-  //       console.log(this.profileGetter.ad)
-  //     })
-  //   })
-  // }
-
-   // listMessage(){
-  //   this.MessageService.listMessageByChannelRoomId(this.roomId).snapshotChanges().subscribe(data=>{
-  //     data.forEach(k=>{
-  //       const x = { ...k.payload.toJSON(), key:k.key}
-  //       this.messageList.push(x as Message)
-  //       this.messageList2 = this.messageList[this.messageList.length -1]
-  //       console.log(this.messageList)
-  //     })
-  //   })
-  // }
-
-  // listMessage(){
-  //   this.MessageService.listMessage().snapshotChanges().subscribe(data=>{
-  //     data.forEach()
-  //   })
-  // }
-
-   // addMessageOrListMessage(){
-  //   if(this.messageRoomTest2.aliciuid == this.aliciuid && this.messageRoomTest2.gondericiuid == this.gondericiuid){
-  //     this.listMessage()
-  //   } else{
-  //     this.messageRoom.aliciuid = this.aliciuid as string
-  //     this.messageRoom.gondericiuid =  this.gondericiuid as string
-  //     this.messageRoom.key2 = this.messageRoom.key
-  //     this.MessageService.addMessageRoom(this.messageRoom)
-  //   }
-  // }
-
-  // createMessageRoom(){
-  //   this.messageRoom.aliciuid = this.aliciuid as string
-  //   this.messageRoom.gondericiuid =  this.gondericiuid as string
-  //   this.messageRoom.key2 = this.messageRoom.key
-  //   this.MessageService.addMessageRoom(this.messageRoom)
-  // }
-
-    // checkMessageRoom(){
-  //   this.MessageService.checkMessageRoom(this.aliciuid).snapshotChanges().subscribe(datas=>{
-  //     datas.forEach(data=>{
-  //       const q = { ...data.payload.toJSON(), key:data.key}
-  //       this.messageRoomTest.push(q as MessageRoom)
-  //       this.messageRoomTest2 = this.messageRoomTest[0]
-  //       this.MessageService.updateRoom(this.messageRoomTest2)
-
-  //     })
-  //     if(this.messageRoomTest2.aliciuid == this.aliciuid && this.messageRoomTest2.gondericiuid == this.gondericiuid){
-  //       this.listMessage()
-  //     } else {
-  //       this.messageRoom.aliciuid = this.aliciuid as string
-  //       this.messageRoom.gondericiuid =  this.gondericiuid as string
-  //       this.MessageService.addMessageRoom(this.messageRoom)
-  //     }
-  //   })
-  // }
 
 }

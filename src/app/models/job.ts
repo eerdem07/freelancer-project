@@ -6,6 +6,7 @@ export class Job{
   desc?:string
   user?: User
   uid?:string
+  date?:string
   category?: string
   subCategory?:string
   photoUrl?:string

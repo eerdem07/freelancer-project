@@ -33,6 +33,11 @@ export class AuthService {
     }
   }
 
+  resetPassword(email:string){
+    return this.Auth.sendPasswordResetEmail(email)
+    .then(()=>{ console.log("Link gönderildi.")})
+  }
+
 
 
 

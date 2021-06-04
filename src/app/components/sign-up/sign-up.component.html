@@ -1,6 +1,6 @@
 <div class="container-lg mt-5">
   <div class="row justify-content-center">
-    <div class="col-12 col-sm-9 col-md-6 col-lg-3">
+    <div class="col-12 col-sm-9 col-md-6 col-lg-4">
       <form #signUpForm="ngForm" (ngSubmit)="signUp()">
         <div class="card mt-3">
           <div class="card-header text-center">
@@ -10,30 +10,42 @@
           </div>
           <div class="card-body">
             <div class="form-group" >
-              <label>Ad:</label>
-              <input type="text" name="ad" class="form-control" #ad [(ngModel)]="user.ad">
+              <div class="input-group input-group-lg">
+                <span class="input-group-text">Ad</span>
+                <input type="text" name="ad" class="form-control" #ad [(ngModel)]="user.ad">
+              </div>
             </div>
-            <div class="form-group">
-              <label>Soyad:</label>
-              <input type="text" name="soyad" class="form-control" #soyad [(ngModel)]="user.soyad">
+            <div class="form-group mt-3">
+              <div class="input-group input-group-lg">
+                <span class="input-group-text">Soyad</span>
+                <input type="text" name="soyad" class="form-control" #soyad [(ngModel)]="user.soyad">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="phone">Telefon Numarası:</label>
-              <input type="tel" name="telefon" class="form-control" #telefon [(ngModel)]="user.telNo">
+            <div class="form-group mt-3">
+              <div class="input-group input-group-lg">
+                <span class="input-group-text">Telefon</span>
+                <input type="tel" name="telefon" class="form-control" #telefon [(ngModel)]="user.telNo">
+              </div>
             </div>
-            <div class="form-group">
-              <label>Mail:</label>
-              <input type="text" name="mail" class="form-control" #mail [(ngModel)]="user.mail">
+            <div class="form-group mt-3">
+              <div class="input-group input-group-lg">
+                <span class="input-group-text">Mail</span>
+                <input type="text" name="mail" class="form-control" #mail [(ngModel)]="user.mail">
+              </div>
             </div>
-            <div class="form-group">
-              <label>Şifre:</label>
-              <input type="password" name="password" class="form-control" #password [(ngModel)]="user.password">
+            <div class="form-group mt-3">
+              <div class="input-group input-group-lg">
+                <span class="input-group-text">Şifre</span>
+                <input type="password" name="password" class="form-control" #password [(ngModel)]="user.password">
+              </div>
             </div>
           </div>
-          <div class="d-grid gap-2">
-            <input type="submit" value="Kayıt Ol" class="btn btn-outline-success  mx-4 "
-              [disabled]="signUpForm.invalid" [disabled]="signUpForm.invalid">
-            <button class="btn btn-outline-primary mx-4" [routerLink]="['/login']">Giriş Yap</button>
+          <div class="card-footer">
+            <div class="d-grid gap-2">
+              <input type="submit" value="Kayıt Ol" class="btn btn-outline-success  mx-4 "
+                [disabled]="signUpForm.invalid" [disabled]="signUpForm.invalid">
+              <button class="btn btn-outline-primary mx-4" [routerLink]="['/login']">Giriş Yap</button>
+            </div>
           </div>
         </div>
       </form>

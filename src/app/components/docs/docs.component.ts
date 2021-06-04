@@ -18,7 +18,7 @@ export class DocsComponent implements OnInit {
 
   nowUser: User = new User()
 
-  progress?:string
+  percent?:any
   constructor(
     private storage:StorageService,
     public realtime: RealtimeService
@@ -50,7 +50,7 @@ export class DocsComponent implements OnInit {
     doc.files = this.files[0]
     this.storage.uploadDoc(doc).subscribe(
       p=>{
-        this.progress = p as unknown as string
+        this.percent = p
       }, err=>{
         console.log(err)
       }

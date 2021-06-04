@@ -1,3 +1,6 @@
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { JobComponent } from './components/job/job.component';
+import { MyJobComponent } from './components/my-job/my-job.component';
 import { CommonModule } from '@angular/common';
 import { MessengerComponent } from './components/messenger/messenger.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,7 +28,10 @@ import { MyMessageComponent } from './components/my-message/my-message.component
     HomeComponent,
     ProfileComponent,
     MessengerComponent,
-    MyMessageComponent
+    MyMessageComponent,
+    MyJobComponent,
+    JobComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

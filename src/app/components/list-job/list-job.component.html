@@ -1,20 +1,84 @@
 <div class="container mt-2">
   <div class="row justify-content-center">
-    <div class="col-md-4">
-      <h3>Kategori Seçiniz</h3>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card alert alert-info">
+        <div class="card-body ">
+          <h1 class="display-6 ">Çevrenizdeki en iyi işler!</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="text-center">Kategori Seçiniz</h3>
+             <select class="form-select" (change)="selectedListKey($event.target)" #category>
+            <option>Lütfen Seçiniz.</option>
+            <option *ngFor="let category of jobCategories">{{category?.name}}</option>
+              </select>
+           </div>
+            <div class="card-body">
+              <h3 class="text-center">Bölüm Seçiniz</h3>
+              <select class="form-select" #subCategory>
+                <option>Lütfen Seçiniz.</option>
+                <option *ngFor="let subCategory of jobSubCategories">{{subCategory?.name}}</option>
+              </select>
+            </div>
+            <div class="card-footer">
+              <div class="d-grid col-12 gap-2 mt-2">
+                <button class="btn btn-primary" (click)="listJob(category.value, subCategory.value)" >Ara</button>
+              </div>
+            </div>
+            </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-9 mt-2">
+        <div class="row">
+          <div class="card" style="width: 18rem;"   *ngFor="let job of jobs">
+            <img src="{{job.photoUrl}}" class="card-img-top" alt="...">
+            <hr>
+              <div class="row justify-content-start align-self-start">
+                <div class="col-4">
+                  <img src="{{job?.user?.photoUrl}}" style="height: 50px;" class="rounded">
+                </div>
+                <div class="col-8">
+                  <h6>
+                    {{job?.user?.ad}} | {{job?.user?.yetenekler}}
+                  </h6>
+                </div>
+              </div>
+            <div class="card-body">
+            <hr>
+            <h5 class="card-title text-center">{{job.name}}</h5>
+            <hr>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-primary" (click)="navigateJob(job.key)">Detay</button>
+            </div>
+            </div>
+      </div>
+        </div>
+  </div>
+  </div>
+</div>
+
+
+<!-- <div class="container mt-2">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <h3 class="text-center">Kategori Seçiniz</h3>
       <select class="form-select" (change)="selectedListKey($event.target)" #category>
         <option>Lütfen Seçiniz.</option>
         <option *ngFor="let category of jobCategories">{{category?.name}}</option>
       </select>
     </div>
-    <div class="col-md-4">
-      <h3>Bölüm Seçiniz</h3>
+    <div class="col-md-3">
+      <h3 class="text-center">Bölüm Seçiniz</h3>
       <select class="form-select" #subCategory>
         <option>Lütfen Seçiniz.</option>
         <option *ngFor="let subCategory of jobSubCategories">{{subCategory?.name}}</option>
       </select>
     </div>
-    <div class="d-grid gap-2 mt-2">
+    <div class="d-grid col-7 gap-2 mt-2">
       <button class="btn btn-primary" (click)="listJob(category.value, subCategory.value)" >Ara</button>
     </div>
   </div>
@@ -25,11 +89,15 @@
       <div class="card" style="width: 18rem;"  >
         <img src="{{job.photoUrl}}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">{{job.name}}</h5>
+          <hr>
+          <h5 class="card-title text-center">{{job.name}}</h5>
+          <hr>
           <p class="card-text">{{job.desc}}</p>
-          <button class="btn btn-primary" (click)="navigateJob(job.key)">Detay</button>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" (click)="navigateJob(job.key)">Detay</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->

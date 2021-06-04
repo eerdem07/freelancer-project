@@ -39,7 +39,6 @@ export class ListProfileTwoComponent implements OnInit {
           const x = { ...k.payload.toJSON(), key:k.key}
           this.profiles.push(x as User)
           this.profiles = this.profiles.filter(el=> el.type == "Personel")
-          console.log(this.profiles)
         })
       })
     } else if( subcategory2Name != '' && subCategoryName != '' && subcategory2Name == ''){

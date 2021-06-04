@@ -1,4 +1,5 @@
-import { RealtimeService } from 'src/app/services/realtime.service';
+import { Router } from '@angular/router';
+import { RealtimeService } from './../../services/realtime.service';
 import { Component, OnInit } from '@angular/core';
 import { Job } from 'src/app/models/job';
 
@@ -9,34 +10,32 @@ import { Job } from 'src/app/models/job';
 })
 export class MyJobComponent implements OnInit {
 
-  uid?:string
-
   jobs:Job[]=[]
 
   constructor(
-    public realtime:RealtimeService
+    public realtime:RealtimeService,
+    public router:Router
   ) { }
 
   ngOnInit() {
-    this.uid = this.realtime.suankiKullanici.uid
-    this.listJobByUid()
+    this.listJobsByUid()
   }
 
-  listJobByUid(){
-    this.realtime.listJobByUid(this.uid).snapshotChanges().subscribe(datas=>{
+  listJobsByUid(){
+    this.realtime.listJobByUid(this.realtime.suankiKullanici.uid).snapshotChanges().subscribe(datas=>{
       datas.forEach(data=>{
-        const jobs = {...data.payload.toJSON(),key:data.key}
+        const jobs = { ...data.payload.toJSON(), key:data.key}
         this.jobs.push(jobs as Job)
-        console.log(this.jobs)
       })
     })
   }
 
+  navigateJob(key:any){
+    this.router.navigate(['job',key])
+  }
 
-  // listJobByUid(){
-  //   this.realtime.listJobByUid(this.uid).subscribe(datas=>{
-  //     console.log(datas)
-  //   })
-  // }
+  deleteJob(key:any){
+    this.realtime.deleteJob(key)
+  }
 
 }

@@ -1,16 +1,28 @@
 <div class="container mt-5">
+  <h3>Dosyalarım</h3>
+  <hr>
   <div class="row">
-    <div class="col-md-12">
-      <h4>Dosya Yükle</h4>
-      <input type="file" (change)="selectDoc($event)">
-      <button class="btn btn-primary" (click)="uploadDoc()">Yükle</button>
-      <!-- <h4>Profil Fotoğrafı Değiştir</h4>
-      <select class="form-select" #subCategory>
-        <option *ngFor="let doc of docs">{{doc.name}}</option>
-      </select>
-      <button class="btn btn-primary" (click)="uploadDoc()">Yükle</button> -->
-
-      <table class="table">
+    <div class="col-4">
+      <div class="card border border-dark">
+        <div class="card-header border-dark" >
+          <h4 class="text-center">Dosya Yükle</h4>
+        </div>
+        <div class="card-body">
+          <div class="input-group mb-3">
+            <!-- <label class="input-group-text" for="inputGroupFile01">Dosya Seç</label> -->
+            <input type="file" class="form-control" (change)="selectDoc($event)">
+          </div>
+          <!-- <input type="file" > -->
+        </div>
+        <div class="card-footer border-dark">
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" (click)="uploadDoc()">Yükle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+     <div class="col-8">
+      <table class="table table-striped border border-dark">
         <thead>
           <tr>
             <th>Dosya Adı</th>
@@ -23,13 +35,12 @@
           <tr *ngFor="let doc of docs">
             <td >{{doc?.name}}</td>
             <td>
-              <a class="btn btn-primary" href="{{doc?.url}}" target="_blank">
+              <a class="btn btn-warning" href="{{doc?.url}}" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
                   <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
                   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path>
                 </svg>
               </a>
-
             </td>
             <td>
               <button class="btn btn-success" (click)="updateProfilePhoto(doc.url)">Yap</button>
@@ -40,6 +51,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
+     </div>
+
   </div>
 </div>

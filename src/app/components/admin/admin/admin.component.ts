@@ -65,7 +65,6 @@ export class AdminComponent implements OnInit {
       datas.forEach(data=>{
         const jobCategory = {...data.payload.toJSON(), key:data.key}
         this.jobCategories.push(jobCategory as JobCategory)
-        console.log(this.jobCategories)
       })
     })
   }
@@ -150,7 +149,6 @@ export class AdminComponent implements OnInit {
       data.forEach(data=>{
         const x = { ...data.payload.toJSON(), key: data.key}
         this.key2 = (x as subCategory)
-        console.log(this.key2.key)
       })
     })
   }
