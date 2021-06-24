@@ -3,7 +3,12 @@
     <div class="col-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ job?.name }}</h5>
+          <h5 class="card-title">
+            {{ job?.name }}
+            <div class="text-end" style="color: red">
+              Fiyat {{ job?.price }} ₺
+            </div>
+          </h5>
           <p class="card-text">{{ job?.desc }}</p>
           <p class="card-text">
             <small class="text-muted">{{

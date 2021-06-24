@@ -22,7 +22,6 @@ export class ResetPasswordComponent implements OnInit {
     this.visible = true;
     this.Auth.resetPassword(email).then(
       () => {
-        // this.result.message = "Sıfırlama bağlantısı gönderildi. Yeni kod için 60 sn bekleyiniz."
         this.result.message = this.toast.success(
           'Sıfırlama bağlantısı gönderildi.',
           'Yeni kod için 60 sn bekleyiniz.'
@@ -39,7 +38,6 @@ export class ResetPasswordComponent implements OnInit {
           'Sıfırlama bağlantısı gönderilemedi.',
           'Hata.'
         );
-        // this.result.message = 'Sıfırlama bağlantısı gönderilemedi.';
         this.result.process = false;
         this.visible2 = true;
         this.visible = false;

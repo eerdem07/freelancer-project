@@ -57,6 +57,19 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a class="nav-link">
+            <div class="d-grid gap-2 d-md-flex mx-auto">
+              <button
+                class="btn btn-primary"
+                *ngIf="checkAdmin()"
+                [routerLink]="['admin']"
+              >
+                Admin Panel
+              </button>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
             <button
               class="btn btn-info ml-2"
               *ngIf="sessionCheck()"
@@ -206,16 +219,6 @@
         </li>
       </ul>
     </div>
-
-    <div class="d-grid gap-2 d-md-flex mx-auto">
-      <button
-        class="btn btn-primary"
-        *ngIf="checkAdmin()"
-        [routerLink]="['admin']"
-      >
-        Admin Panel
-      </button>
-    </div>
   </div>
 </nav>
 <router-outlet></router-outlet>
@@ -228,40 +231,8 @@
         <a href="/nasil-calisir">Nasıl Çalışır</a>
       </li>
       <li class="list-inline-item text-white">
-        <a href="/hakkimizda">Hakkımızda</a>
-      </li>
-      <li class="list-inline-item text-white">
         <a href="mailto:emreerdem502@gmail.com">İletişim</a>
       </li>
     </ul>
   </footer>
 </div>
-
-<!-- <footer class="footer">
-  <div class="container">
-    <ul>
-      <li class="text-white">
-        <a href="mailto:info@bakvebul.com">İletişim</a>
-      </li>
-    </ul>
-    <ul>
-      <li class="text-white">
-        <a href="/nasil-calisir">Nasıl Çalışır?</a>
-      </li>
-    </ul>
-    <ul>
-      <li>Freelancer Project created by</li>
-    </ul>
-  </div>
-</footer> -->
-<!--
-<footer class="footer mt-5">
-  <div class="container">
-    <span class="text-muted"
-      >Freelancer Project created by
-      <b style="color: #4ac7d0">Emre Erdem</b> 2021.
-    </span>
-    <br />
-    <a href="mailto:info@bakvebul.com">İletişim</a>
-  </div>
-</footer> -->

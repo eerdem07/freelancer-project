@@ -15,7 +15,6 @@ export class User {
   bolum?: string;
   altKategori?: string;
   yetenekler?: string;
-  points?: string;
   rol!: 'admin' | 'user';
   type?: string;
 }

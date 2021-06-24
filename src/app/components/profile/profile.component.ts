@@ -115,8 +115,6 @@ export class ProfileComponent implements OnInit {
   }
 
   editAccount() {
-    // this.result.process = true
-    // this.result.message = this.toast.warning("Aktarılıyorsunuz.", "Uyarı!")
     this.router.navigate(['/profile-update/selection']);
   }
 

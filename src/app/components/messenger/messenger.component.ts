@@ -32,12 +32,6 @@ export class MessengerComponent implements OnInit {
   profileSender: User[] = [];
   profileGetter: User[] = [];
 
-  // profileSender: User = new User()
-  // profileGetter: User = new User()
-
-  // messageRoomTest2:MessageRoom = new MessageRoom()
-  // messageRoomTest:MessageRoom[] = []
-
   key!: string;
   constructor(
     public route: ActivatedRoute,
