@@ -1,24 +1,36 @@
 <div class="container-lg mt-5">
-  <div class="row  justify-content-center align-self-center">
+  <div class="row justify-content-center align-self-center">
     <div class="col-12 col-sm-9 col-md-6 col-lg-4">
       <form #loginForm="ngForm" (ngSubmit)="signIn(mail.value, password.value)">
         <div class="card mt-5">
           <div class="card-header text-center">
             <b>
-              <h5> Giriş Yap</h5>
+              <h5>Giriş Yap</h5>
             </b>
           </div>
           <div class="card-body">
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <span class="input-group-text">Mail</span>
-                <input type="text" name="mail" class="form-control " #mail [(ngModel)]="user.mail">
+                <input
+                  type="text"
+                  name="mail"
+                  class="form-control"
+                  #mail
+                  [(ngModel)]="user.mail"
+                />
               </div>
             </div>
             <div class="form-group mt-3">
               <div class="input-group input-group-lg">
                 <span class="input-group-text">Şifre</span>
-                <input type="password" name="password" class="form-control" #password [(ngModel)]="user.password">
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  #password
+                  [(ngModel)]="user.password"
+                />
               </div>
             </div>
           </div>
@@ -27,9 +39,18 @@
           </div>
           <div class="card-footer">
             <div class="d-grid gap-2">
-              <input type="submit" value="Giriş Yap" class="btn btn-outline-success btn-block"
-              [disabled]="loginForm.invalid">
-            <button class="btn btn-outline-primary btn-block" [routerLink]="['/signup']">Kayıt Ol</button>
+              <input
+                type="submit"
+                value="Giriş Yap"
+                class="btn btn-outline-success btn-block"
+                [disabled]="loginForm.invalid"
+              />
+              <button
+                class="btn btn-outline-primary btn-block"
+                [routerLink]="['/signup']"
+              >
+                Kayıt Ol
+              </button>
             </div>
           </div>
         </div>

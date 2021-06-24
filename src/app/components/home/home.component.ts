@@ -5,29 +5,29 @@ import { RealtimeService } from 'src/app/services/realtime.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  profiles: User[] = [];
 
-  profiles:User[] = []
-
-  constructor(public realtime: RealtimeService) { }
+  constructor(public realtime: RealtimeService) {}
 
   ngOnInit() {
-    this.listProfile()
+    this.listProfile();
   }
 
-  listProfile(){
-    this.realtime.listProfile().snapshotChanges().subscribe(data=>{
-      data.forEach(k=>{
-        const x = { ...k.payload.toJSON(), key:k.key}
-        this.profiles.push(x as User)
-        this.profiles= this.profiles.filter(el=>el.rol !== "admin" && el.type=="Personel")
-      })
-    })
+  listProfile() {
+    this.realtime
+      .listProfile()
+      .snapshotChanges()
+      .subscribe((data) => {
+        data.forEach((k) => {
+          const x = { ...k.payload.toJSON(), key: k.key };
+          this.profiles.push(x as User);
+          this.profiles = this.profiles.filter(
+            (el) => el.rol !== 'admin' && el.type == 'Personel'
+          );
+        });
+      });
   }
-
-
-
-
 }

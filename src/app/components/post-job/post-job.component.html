@@ -3,57 +3,113 @@
     Dakikar içerisinde İş bulun!
   </div>
   <div class="row justify-content-center">
-    <div class="card col-5">
-      <div class="card-header">
-        <h4 class="text-center">İş Yaratın!</h4>
-      </div>
-      <div class="card-body">
-        <div class="input-group">
-          <span class="input-group-text">Başlık Giriniz.</span>
-          <input type="text" class="form-control" #name>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-center">İş Yaratın!</h4>
         </div>
-      </div>
-      <div class="card-body">
-        <div class="input-group">
-          <span class="input-group-text" >Açıklama giriniz.</span>
-          <textarea class="form-control" #desc></textarea>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="input-group">
-          <label class="input-group-text">Kategori</label>
-          <select class="form-select" (change)="selectedKey($event.target)" #category>
-            <option>Lütfen Seçiniz</option>
-            <option  *ngFor="let categori of jobCategories">{{categori?.name}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="input-group">
-          <label class="input-group-text">Alt Kategori</label>
-          <select class="form-select"#subCategory>
-            <option>Lütfen Seçiniz</option>
-          <option  *ngFor="let subCategory of jobSubCategories">{{subCategory?.name}}</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-2">
-      <div class="card col-5">
         <div class="card-body">
           <div class="input-group">
-            <label class="input-group-text" for="inputGroupFile02">Fotoğraf Seç</label>
-            <input type="file" class="form-control" aria-label="Upload" (change)="selectDoc($event)">
-            <button class="btn btn-outline-secondary" type="button" (click)="uploadDoc()">Fotoğrafı Yükle</button>
+            <span class="input-group-text">Başlık Giriniz.</span>
+            <input type="text" class="form-control" #name />
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="input-group">
+            <span class="input-group-text">Açıklama giriniz.</span>
+            <textarea class="form-control" #desc></textarea>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text">Kategori</label>
+            <select
+              class="form-select"
+              (change)="selectedKey($event.target)"
+              #category
+            >
+              <option>Lütfen Seçiniz</option>
+              <option *ngFor="let categori of jobCategories">
+                {{ categori?.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text">Alt Kategori</label>
+            <select class="form-select" #subCategory>
+              <option>Lütfen Seçiniz</option>
+              <option *ngFor="let subCategory of jobSubCategories">
+                {{ subCategory?.name }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row justify-content-center mt-2">
-      <div class="card col-5">
+      <div class="card mt-3">
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text" for="inputGroupFile02"
+              >Fotoğraf Seç</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              aria-label="Upload"
+              (change)="selectDoc($event)"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              (click)="uploadDoc()"
+            >
+              Fotoğrafı Yükle
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <div class="card-body">
+          <div class="input-group">
+            <span class="input-group-text">Fiyat Giriniz.</span>
+            <input type="text" class="form-control" #price />
+          </div>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <div class="card-body">
+          <div class="input-group">
+            <label class="input-group-text">Teslim Süresi</label>
+            <select class="form-select" #time>
+              <option>Lütfen Seçiniz</option>
+              <option>1 gün içinde</option>
+              <option>3 gün içinde</option>
+              <option>7 gün içinde</option>
+              <option>Herhangi bir gün</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-3">
         <div class="card-body">
           <div class="d-grid gap-2">
-            <button class="btn btn-primary" (click)="addJob(name.value, desc.value, category.value, subCategory.value)" [disabled]="percent !==100">Ekle</button>
+            <button
+              class="btn btn-primary"
+              (click)="
+                addJob(
+                  name.value,
+                  desc.value,
+                  category.value,
+                  subCategory.value,
+                  time.value,
+                  price.value
+                )
+              "
+              [disabled]="percent !== 100"
+            >
+              Ekle
+            </button>
           </div>
         </div>
       </div>

@@ -7,19 +7,17 @@ import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
-    path:'personel',
-    component:ListProfileOneComponent
+    path: 'personel',
+    component: ListProfileOneComponent,
   },
   {
-    path:'employer',
-    component:ListProfileTwoComponent
-  }
-]
+    path: 'employer',
+    component: ListProfileTwoComponent,
+  },
+];
 
 @NgModule({
-  imports: [
-    CommonModule, RouterModule.forChild(routes),FormsModule
-  ],
-  declarations: [ListProfileOneComponent,ListProfileTwoComponent]
+  imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
+  declarations: [ListProfileOneComponent, ListProfileTwoComponent],
 })
-export class ListProfileModule { }
+export class ListProfileModule {}

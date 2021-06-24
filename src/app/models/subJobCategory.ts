@@ -1,4 +1,4 @@
-export class subJobCategory{
-  key?:string
-  name!: string
+export class subJobCategory {
+  key?: string;
+  name!: string;
 }

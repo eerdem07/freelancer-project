@@ -1,5 +1,4 @@
 export class Result {
-    process!: boolean
-    message!: any
-
+  process!: boolean;
+  message!: any;
 }

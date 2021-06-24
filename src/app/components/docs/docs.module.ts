@@ -6,17 +6,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path:'',
-    component:DocsComponent
-  }
-]
+    path: '',
+    component: DocsComponent,
+  },
+];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [DocsComponent]
+  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
+  declarations: [DocsComponent],
 })
-export class DocsModule { }
+export class DocsModule {}

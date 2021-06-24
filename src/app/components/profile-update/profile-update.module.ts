@@ -5,26 +5,34 @@ import { FormsModule } from '@angular/forms';
 import { ProfileUpdatePersonelComponent } from './profile-update-personel/profile-update-personel.component';
 import { ProfileUpdateEmployerComponent } from './profile-update-employer/profile-update-employer.component';
 import { ProfileUpdateSelectionComponent } from './profile-update-selection/profile-update-selection.component';
+import { ToastrModule } from 'ngx-toastr';
 
 const routes: Routes = [
   {
-    path:'personel',
-    component:ProfileUpdatePersonelComponent
+    path: 'personel',
+    component: ProfileUpdatePersonelComponent,
   },
   {
-    path:'selection',
-    component:ProfileUpdateSelectionComponent
+    path: 'selection',
+    component: ProfileUpdateSelectionComponent,
   },
   {
-    path:'employer',
-    component:ProfileUpdateEmployerComponent
-  }
-]
+    path: 'employer',
+    component: ProfileUpdateEmployerComponent,
+  },
+];
 
 @NgModule({
-  declarations: [ProfileUpdatePersonelComponent,ProfileUpdateSelectionComponent,ProfileUpdateEmployerComponent],
+  declarations: [
+    ProfileUpdatePersonelComponent,
+    ProfileUpdateSelectionComponent,
+    ProfileUpdateEmployerComponent,
+  ],
   imports: [
-    CommonModule, RouterModule.forChild(routes),FormsModule
-  ]
+    CommonModule,
+    RouterModule.forChild(routes),
+    FormsModule,
+    ToastrModule.forRoot(),
+  ],
 })
-export class ProfileUpdateModule { }
+export class ProfileUpdateModule {}

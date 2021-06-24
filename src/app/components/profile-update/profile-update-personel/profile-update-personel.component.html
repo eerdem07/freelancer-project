@@ -1,38 +1,92 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
-   <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-     <div class="card">
-       <div class="card-header text-center">
-         <h2>Çalışan Profili Güncelle</h2>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="card">
+        <div class="card-header text-center">
+          <h2>Çalışan Profili Güncelle</h2>
         </div>
-       <div class="card-body">
-        <h5>Üniversite Seçiniz</h5>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="university" #university >
-          <option *ngFor="let university of universities">{{university?.name}}</option>
-        </select>
-        <h5>Kategori Seçiniz</h5>
-         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" (change)="selectedListKey($event.target)" name="category" #category >
-           <option *ngFor="let categori of categories" >{{categori?.name}}</option>
-         </select>
-         <h5>Alt Kategori Seçiniz</h5>
-         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" (change)="selectedListKey2($event.target)"  name="subCategory" #subCategory>
-           <option *ngFor="let subCategory of subCategories">{{subCategory?.name}}</option>
-         </select>
-          <h5>Beceri Seçiniz</h5>
-          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="yetenek" #subcategory2>
-            <option *ngFor="let subCategory2 of subCategories2">{{subCategory2?.name}}</option>
+        <div class="card-body">
+          <h5>Üniversite Seçiniz</h5>
+          <select
+            class="form-select form-select-lg mb-3"
+            aria-label=".form-select-lg example"
+            name="university"
+            #university
+          >
+            <option>Lütfen Seçiniz.</option>
+            <option *ngFor="let university of universities">
+              {{ university?.name }}
+            </option>
           </select>
-       </div>
-   </div>
-   <div class="card mt-2">
-     <div class="card-body">
-      <label><h5>Kendinizi Tanıtın</h5></label>
-      <textarea class="form-control" name="ozgecmis" rows="5" #ozgecmis ngModel [(ngModel)]="nowUser.ozgecmis"></textarea>
-     </div>
-   </div>
-   <div class="d-grid gap-2 col-12 mx-auto mt-2">
-    <button class="btn toast-bottom-center btn-primary" (click)="updateProfile(category.value, subCategory.value, subcategory2.value, ozgecmis.value, university.value)">Güncelle</button>
+          <h5>Kategori Seçiniz</h5>
+          <select
+            class="form-select form-select-lg mb-3"
+            aria-label=".form-select-lg example"
+            (change)="selectedListKey($event.target)"
+            name="category"
+            #category
+          >
+            <option>Lütfen Seçiniz.</option>
+            <option *ngFor="let categori of categories">
+              {{ categori?.name }}
+            </option>
+          </select>
+          <h5>Alt Kategori Seçiniz</h5>
+          <select
+            class="form-select form-select-lg mb-3"
+            aria-label=".form-select-lg example"
+            (change)="selectedListKey2($event.target)"
+            name="subCategory"
+            #subCategory
+          >
+            <option>Lütfen Seçiniz.</option>
+
+            <option *ngFor="let subCategory of subCategories">
+              {{ subCategory?.name }}
+            </option>
+          </select>
+          <h5>Beceri Seçiniz</h5>
+          <select
+            class="form-select form-select-lg mb-3"
+            aria-label=".form-select-lg example"
+            name="yetenek"
+            #subcategory2
+          >
+            <option *ngFor="let subCategory2 of subCategories2">
+              {{ subCategory2?.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="card mt-2">
+        <div class="card-body">
+          <label><h5>Kendinizi Tanıtın</h5></label>
+          <textarea
+            class="form-control"
+            name="ozgecmis"
+            rows="5"
+            #ozgecmis
+            ngModel
+            [(ngModel)]="nowUser.ozgecmis"
+          ></textarea>
+        </div>
+      </div>
+      <div class="d-grid gap-2 col-12 mx-auto mt-2">
+        <button
+          class="btn toast-bottom-center btn-primary"
+          (click)="
+            updateProfile(
+              category.value,
+              subCategory.value,
+              subcategory2.value,
+              ozgecmis.value,
+              university.value
+            )
+          "
+        >
+          Güncelle
+        </button>
+      </div>
+    </div>
   </div>
-  </div>
- </div>
- </div>
+</div>

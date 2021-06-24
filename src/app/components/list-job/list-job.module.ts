@@ -5,15 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path:'',
-    component:ListJobComponent
-  }
-]
+    path: '',
+    component: ListJobComponent,
+  },
+];
 
 @NgModule({
-  imports: [
-    CommonModule,RouterModule.forChild(routes)
-  ],
-  declarations: [ListJobComponent]
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [ListJobComponent],
 })
-export class ListJobModule { }
+export class ListJobModule {}

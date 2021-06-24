@@ -1,3 +1,7 @@
+import { NasilCalisirComponent } from './components/nasil-calisir/nasil-calisir.component';
+import { ProfileUpdateSelectionComponent } from './components/profile-update/profile-update-selection/profile-update-selection.component';
+import { ProfileUpdatePersonelComponent } from './components/profile-update/profile-update-personel/profile-update-personel.component';
+import { ProfileUpdateEmployerComponent } from './components/profile-update/profile-update-employer/profile-update-employer.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { JobComponent } from './components/job/job.component';
 import { MyJobComponent } from './components/my-job/my-job.component';
@@ -31,7 +35,8 @@ import { MyMessageComponent } from './components/my-message/my-message.component
     MyMessageComponent,
     MyJobComponent,
     JobComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    NasilCalisirComponent,
   ],
   imports: [
     CommonModule,
@@ -41,9 +46,9 @@ import { MyMessageComponent } from './components/my-message/my-message.component
     AngularFireModule.initializeApp(environment.firebaseConfig),
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

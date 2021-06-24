@@ -1,19 +1,28 @@
-
 <div class="container mt-5">
   <h3>Mesajlarım</h3>
-  <hr>
- <div class="row">
-  <div class="col-12 col-sm-12 col-md-12 col-12">
-    <ng-container *ngFor="let room of messageRoom" >
-      <div class="card mt-2" *ngIf="!(room.messages?.length == 0)">
-        <div class="card-header">
-          <img src="{{ listProfilePhoto(room)}}" class="img-thumbnail" style="width: 75px; height: 75px;">
-          {{ listUserName(room)}}
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary justify-content-end" (click)="goMessenger(room.key)">Detay</button>
+  <hr />
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-12">
+      <ng-container *ngFor="let room of messageRoom">
+        <div class="card mt-2" *ngIf="!(room.messages?.length == 0)">
+          <div class="card-header">
+            <img
+              src="{{ listProfilePhoto(room) }}"
+              class="img-thumbnail"
+              style="width: 75px; height: 75px"
+            />
+            {{ listUserName(room) }}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button
+                class="btn btn-primary justify-content-end"
+                (click)="goMessenger(room.key)"
+              >
+                Detay
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
+    </div>
   </div>
- </div>
+</div>

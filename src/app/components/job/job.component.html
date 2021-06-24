@@ -3,76 +3,58 @@
     <div class="col-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{job?.name}}</h5>
-          <p class="card-text">{{job?.desc}}</p>
+          <h5 class="card-title">{{ job?.name }}</h5>
+          <p class="card-text">{{ job?.desc }}</p>
           <p class="card-text">
-            <small class="text-muted">{{job?.date  | date:'dd.MM.yyyy'}}</small>
+            <small class="text-muted">{{
+              job?.date | date: "dd.MM.yyyy"
+            }}</small>
           </p>
+          <h5></h5>
         </div>
-        <img src="{{job?.photoUrl}}" class="card-img-bottom" style="max-height:25rem;">
+        <img
+          src="{{ job?.photoUrl }}"
+          class="card-img-bottom"
+          style="max-height: 25rem"
+        />
       </div>
-
-  </div>
-  <div class="col-6">
-    <div class="row">
-      
     </div>
-    <div class="row">
-      <div class="card mb-3" style="max-width: 600px;">
-        <div class="row g-0 justify-content-center">
-          <div class="col-md-4">
-            <img src="{{job?.user?.photoUrl}}" style="max-width:10rem">
+    <div class="col-4">
+      <div class="row justify-content-center">
+        <div class="card mt-2" style="width: 18rem">
+          <img src="{{ job?.user?.photoUrl }}" class="card-img-top" />
+          <div class="card-body">
+            <!-- <h6 class="card-title text-center">{{profile.type}}</h6> -->
+            <h5 class="card-title text-center">
+              {{ job?.user?.ad }} {{ job?.user?.soyad }}
+            </h5>
           </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <ul class="list-group list-group-flush">
+            <li
+              class="list-group-item text-center"
+              *ngIf="job?.user?.bolum?.length != 0 ? true : false"
+            >
+              {{ job?.user?.bolum }}
+            </li>
+            <li
+              class="list-group-item text-center"
+              *ngIf="job?.user?.bolum?.length != 0 ? true : false"
+            >
+              {{ job?.user?.altKategori }}
+            </li>
+          </ul>
+          <div class="card-body">
+            <div class="d-grid gap-2">
+              <button
+                class="btn btn-primary"
+                (click)="navigateProfile(job?.user?.userID)"
+              >
+                Profili Ziyaret Et
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
 </div>
-
-
-
-
-
-
-
-<!-- <div class="container mt-5">
-  <div class="row">
-    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-      <div class="card mb-3" style="width: 22rem;">
-        <img src="{{job?.photoUrl}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{job?.name}}</h5>
-          <p class="card-text">{{job?.desc}}</p>
-          <p class="card-text">
-            <small class="text-muted">{{job?.date | date:'dd.MM.yyyy'}}</small>
-          </p>
-        </div>
-      </div>
-  </div>
-    <div class="col-12 col-sm-2 col-md-4 col-lg-6">
-      <div class="card" style="width: 20rem;">
-        <img src="{{job?.user?.photoUrl}}" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title text-center">{{job?.user?.ad}} {{job?.user?.soyad}}</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item text-center">{{job?.user?.bolum}}</li>
-          <li class="list-group-item text-center">{{job?.user?.altKategori}}</li>
-          <li class="list-group-item text-center">{{job?.user?.yetenekler}}</li>
-        </ul>
-        <div class="card-body">
-          <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-primary" (click)="navigateProfile(job?.user?.userID)">Detay</button>
-          </div>
-        </div>
-      </div>
-    </div>
-</div> -->

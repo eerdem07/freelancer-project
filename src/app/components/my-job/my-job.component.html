@@ -1,28 +1,30 @@
 <div class="container mt-5">
   <h3>İşlerim</h3>
-  <hr>
+  <hr />
   <div class="row">
-  <div class="col-12 col-sm-9 col-md-6 col-lg-3 " *ngFor="let job of jobs">
-        <div class="card" >
-          <div class="card-header">
-            <img src="{{job?.photoUrl}}" class="card-img-top" alt="...">
-          </div>
-          <div class="card-body">
-           <h6 class="text-center">
-            {{job?.name}}
-           </h6>
-          </div>
-          <hr>
-          <div class="card-body">
-            {{job?.desc | slice:0:50}}
-          </div>
-          <div class="card-footer">
-            <div class="d-grid gap-2 col-6 mx-auto">
-              <button  class="btn btn-primary" (click)="navigateJob(job?.key)">Detay</button>
-              <button class="btn btn-danger" (click)="deleteJob(job?.key)">Sil</button>
-            </div>
+    <div class="col-12 col-sm-9 col-md-6 col-lg-3" *ngFor="let job of jobs">
+      <div class="card">
+        <div class="card-header">
+          <img src="{{ job?.photoUrl }}" class="card-img-top" alt="..." />
+        </div>
+        <div class="card-body">
+          <h6 class="text-center">
+            {{ job?.name }}
+          </h6>
+        </div>
+        <hr />
+        <div class="card-body">{{ job?.desc | slice: 0:50 }}...</div>
+        <div class="card-footer">
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" (click)="navigateJob(job?.key)">
+              Detay
+            </button>
+            <button class="btn btn-danger" (click)="deleteJob(job?.key)">
+              Sil
+            </button>
           </div>
         </div>
-  </div>
+      </div>
+    </div>
   </div>
 </div>

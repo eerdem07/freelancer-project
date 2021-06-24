@@ -7,79 +7,82 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-my-message',
   templateUrl: './my-message.component.html',
-  styleUrls: ['./my-message.component.scss']
+  styleUrls: ['./my-message.component.scss'],
 })
 export class MyMessageComponent implements OnInit {
+  uid?: string;
 
-  uid?:string
+  aliciuid?: string;
+  gondericiuid?: string;
 
-  aliciuid?:string
-  gondericiuid?:string
+  messageRoom: MessageRoom[] = [];
 
-  messageRoom:MessageRoom[] = []
+  messageRoomSender: MessageRoom[] = [];
+  messageRoomGetter: MessageRoom[] = [];
 
-  messageRoomSender:MessageRoom[] = []
-  messageRoomGetter:MessageRoom[] = []
-
-
-  messageRoom2:MessageRoom = new MessageRoom()
+  messageRoom2: MessageRoom = new MessageRoom();
 
   constructor(
     public MessageService: MessageService,
     public realtime: RealtimeService,
     public router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.aliciuid = this.realtime.suankiKullanici.uid
-    this.uid = this.realtime.suankiKullanici.uid
-    this.listMessageRoomOne()
-    this.listMessageRoomTwo()
+    this.aliciuid = this.realtime.suankiKullanici.uid;
+    this.uid = this.realtime.suankiKullanici.uid;
+    this.listMessageRoomOne();
+    this.listMessageRoomTwo();
   }
 
-  goMessenger(roomId:any){
-    this.router.navigate(['messenger',roomId])
+  goMessenger(roomId: any) {
+    this.router.navigate(['messenger', roomId]);
   }
 
-  listMessageRoomOne(){
-    this.MessageService.listMessageRoomGetter(this.aliciuid).subscribe(datas=>{
-      this.messageRoomGetter = datas
-    })
-  }
-  listMessageRoomTwo(){
-    this.MessageService.listMessageRoomSender(this.aliciuid).subscribe(datas=>{
-      this.messageRoomSender = datas
-      this.messageRoom = this.messageRoomGetter.concat(this.messageRoomSender)
-      this.deleteMessageRoom()
-    })
-  }
-
-
-  deleteMessageRoom(){
-    this.messageRoomGetter.forEach(room=>{
-      if(room.aliciuid == this.uid && room.gondericiuid == this.uid){
-        this.MessageService.deleteMessageRoom(room)
+  listMessageRoomOne() {
+    this.MessageService.listMessageRoomGetter(this.aliciuid).subscribe(
+      (datas) => {
+        this.messageRoomGetter = datas;
       }
-    })
+    );
+  }
+  listMessageRoomTwo() {
+    this.MessageService.listMessageRoomSender(this.aliciuid).subscribe(
+      (datas) => {
+        this.messageRoomSender = datas;
+        this.messageRoom = this.messageRoomGetter.concat(
+          this.messageRoomSender
+        );
+        this.deleteMessageRoom();
+      }
+    );
   }
 
-  listProfile(){
-    this.realtime.listProfileByUserID(this.gondericiuid as string)
+  deleteMessageRoom() {
+    this.messageRoomGetter.forEach((room) => {
+      if (room.aliciuid == this.uid && room.gondericiuid == this.uid) {
+        this.MessageService.deleteMessageRoom(room);
+      }
+    });
   }
 
-  listUserName(room:any){
-    if(this.aliciuid == room.aliciuid){
-      return room.gondericiadi
-    } else if (this.aliciuid == room.gondericiuid){
-      return room.aliciadi
+  listProfile() {
+    this.realtime.listProfileByUserID(this.gondericiuid as string);
+  }
+
+  listUserName(room: any) {
+    if (this.aliciuid == room.aliciuid) {
+      return room.gondericiadi;
+    } else if (this.aliciuid == room.gondericiuid) {
+      return room.aliciadi;
     }
   }
 
-  listProfilePhoto(room:any){
-    if(this.aliciuid == room.aliciuid){
-      return room.gondericifoto
-    } else if (this.aliciuid == room.gondericiuid){
-      return room.alicifoto
+  listProfilePhoto(room: any) {
+    if (this.aliciuid == room.aliciuid) {
+      return room.gondericifoto;
+    } else if (this.aliciuid == room.gondericiuid) {
+      return room.alicifoto;
     }
   }
 }

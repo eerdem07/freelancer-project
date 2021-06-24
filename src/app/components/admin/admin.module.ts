@@ -6,15 +6,13 @@ import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
-    path:'',
-    component:AdminComponent
-  }
-]
+    path: '',
+    component: AdminComponent,
+  },
+];
 
 @NgModule({
   declarations: [AdminComponent],
-  imports: [
-    CommonModule, RouterModule.forChild(routes), FormsModule
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
 })
-export class AdminModule { }
+export class AdminModule {}

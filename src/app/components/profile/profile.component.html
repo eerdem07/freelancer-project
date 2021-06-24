@@ -1,42 +1,65 @@
 <div class="container-lg mt-5">
-    <div class="row justify-content-center mt-5 mx-5">
-        <div class="col-12 col-sm-9 col-md-6 col-lg-4">
-            <div class="card">
-                <div class="card-header text-center">
-                    <b>
-                      {{profil?.ad}} {{profil?.soyad}}
-                    </b>
-                    <img src="">
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                      <img class="card-img-top" src="{{profil?.photoUrl}}" alt="Card image cap">
-                        <div class="form-control  mt-2">Mail: &nbsp;<b>{{profil?.mail}}</b></div>
-                        <div class="form-control  mt-2">Telefon Numarası: &nbsp;<b>{{profil?.telNo}}</b></div>
-                        <div class="form-control  mt-2">Üniversite: &nbsp;<b>{{profil?.university}}</b></div>
-                        <div class="form-control  mt-2">Bölüm: &nbsp;<b>{{profil?.bolum}}</b></div>
-                        <div class="form-control  mt-2">Alt Kateogri: &nbsp;<b>{{profil?.altKategori}}</b></div>
-                        <div class="form-control  mt-2">Yetenek: &nbsp;<b>{{profil?.yetenekler}}</b></div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                  <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="btn btn-outline-warning" *ngIf="aliciuid == simdikikullaniciuid" (click)="editAccount()">Düzenle</button>
-                    <button class="btn btn-outline-danger" *ngIf="aliciuid == simdikikullaniciuid" (click)="deleteAccount()">Hesabı Sil</button>
-                    <button class="btn btn-outline-primary" *ngIf="simdikikullaniciuid !== uid" [routerLink]="['/messenger',messageRoomTest2?.key]">Mesaj Gönder</button>
-                  </div>
-                </div>
-            </div>
+  <div class="row justify-content-center mt-5 mx-5">
+    <div class="col-12 col-sm-9 col-md-6 col-lg-4">
+      <div class="card">
+        <div class="card-header text-center">
+          <b> {{ profil?.ad }} {{ profil?.soyad }} </b>
+          <img src="" />
         </div>
-        <div class="col-12 col-sm-3 col-md-6 col-lg-8 mt-1">
-          <div class="card">
-            <div class="card-header">
-              Öz Geçmiş
+        <div class="card-body">
+          <div class="form-group">
+            <img
+              class="card-img-top"
+              src="{{ profil?.photoUrl }}"
+              alt="Card image cap"
+            />
+            <div class="form-control mt-2">
+              Mail: &nbsp;<b>{{ profil?.mail }}</b>
             </div>
-            <div class="card-body">
-              {{profil?.ozgecmis}}
+            <div class="form-control mt-2">
+              Telefon Numarası: &nbsp;<b>{{ profil?.telNo }}</b>
+            </div>
+            <div class="form-control mt-2">
+              Üniversite: &nbsp;<b>{{ profil?.university }}</b>
+            </div>
+            <div class="form-control mt-2">
+              Bölüm: &nbsp;<b>{{ profil?.bolum }}</b>
+            </div>
+            <div class="form-control mt-2">
+              Alt Kateogri: &nbsp;<b>{{ profil?.altKategori }}</b>
+            </div>
+            <div class="form-control mt-2">
+              Yetenek: &nbsp;<b>{{ profil?.yetenekler }}</b>
             </div>
           </div>
         </div>
+        <div class="card-footer">
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button
+              class="btn btn-outline-warning"
+              *ngIf="aliciuid == simdikikullaniciuid"
+              (click)="editAccount()"
+            >
+              Düzenle
+            </button>
+            <button
+              class="btn btn-outline-primary"
+              *ngIf="simdikikullaniciuid !== uid"
+              [routerLink]="['/messenger', messageRoomTest2?.key]"
+            >
+              Mesaj Gönder
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="col-12 col-sm-3 col-md-6 col-lg-8 mt-1">
+      <div class="card">
+        <div class="card-header">Öz Geçmiş</div>
+        <div class="card-body">
+          {{ profil?.ozgecmis }}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

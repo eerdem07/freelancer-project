@@ -5,15 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path:'',
-    component:PostJobComponent
-  }
-]
+    path: '',
+    component: PostJobComponent,
+  },
+];
 
 @NgModule({
   declarations: [PostJobComponent],
-  imports: [
-    CommonModule, RouterModule.forChild(routes)
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class PostJobModule { }
+export class PostJobModule {}

@@ -2,8 +2,10 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
       <div class="card alert alert-info mt-2">
-        <div class="card-body ">
-          <h1 class="display-6 ">Dakikar içinde profesyonel çalışanları bulun!</h1>
+        <div class="card-body">
+          <h1 class="display-6">
+            Dakikar içinde profesyonel çalışanları bulun!
+          </h1>
         </div>
       </div>
     </div>
@@ -13,54 +15,103 @@
       <div class="card">
         <div class="card-body">
           <h3 class="text-center">Kategori Seçiniz</h3>
-          <select class="form-select" (change)="selectedListKey($event.target)" #category>
+          <select
+            class="form-select"
+            (change)="selectedListKey($event.target)"
+            #category
+          >
             <option>Lütfen Seçiniz.</option>
-            <option *ngFor="let category of categories">{{category?.name}}</option>
+            <option *ngFor="let category of categories">
+              {{ category?.name }}
+            </option>
           </select>
         </div>
         <div class="card-body">
           <h3 class="text-center">Bölüm Seçiniz</h3>
-          <select class="form-select" (change)="selectedListKey2($event.target)" #subCategory>
+          <select
+            class="form-select"
+            (change)="selectedListKey2($event.target)"
+            #subCategory
+          >
             <option>Lütfen Seçiniz.</option>
-            <option *ngFor="let subCategory of subCategories">{{subCategory?.name}}</option>
+            <option *ngFor="let subCategory of subCategories">
+              {{ subCategory?.name }}
+            </option>
           </select>
         </div>
         <div class="card-body">
           <h3 class="text-center">Yetenek Seçiniz</h3>
           <select class="form-select" #subCategory2>
             <option>Lütfen Seçiniz.</option>
-            <option *ngFor="let subCategory2 of subCategories2" >{{subCategory2?.name}}</option>
+            <option *ngFor="let subCategory2 of subCategories2">
+              {{ subCategory2?.name }}
+            </option>
           </select>
         </div>
         <div class="card-footer">
           <div class="d-grid col-12 gap-2 mt-2">
-            <button class="btn btn-primary" (click)="listProfile(category.value, subCategory.value, subCategory2.value)" >Ara</button>
+            <button
+              class="btn btn-primary"
+              (click)="
+                listProfile(
+                  category.value,
+                  subCategory.value,
+                  subCategory2.value
+                )
+              "
+            >
+              Ara
+            </button>
           </div>
         </div>
       </div>
     </div>
     <div class="col-12 col-sm-12 col-md-6 col-lg-3">
       <div class="row">
-        <div class="col-8 col-sm-8 col-md-6 col-lg-3" *ngFor="let profile of profiles">
-          <div class="card mt-2" style="width: 15.7rem;" >
-            <img src="{{profile.photoUrl}}" class="card-img-top" style="width: 250px; height: 250px;">
+        <div
+          class="col-8 col-sm-8 col-md-6 col-lg-3"
+          *ngFor="let profile of profiles"
+        >
+          <div class="card mt-2" style="width: 15.7rem">
+            <img
+              src="{{ profile.photoUrl }}"
+              class="card-img-top"
+              style="width: 250px; height: 250px"
+            />
             <div class="card-body">
-              <h5 class="card-title text-center">{{profile.ad}} {{profile.soyad}}</h5>
+              <h5 class="card-title text-center">
+                {{ profile.ad }} {{ profile.soyad }}
+              </h5>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item text-center" *ngIf="profile.bolum?.length != 0 ? true : false">{{profile.bolum}}</li>
-              <li class="list-group-item text-center" *ngIf="profile.bolum?.length != 0 ? true : false">{{profile.altKategori}}</li>
+              <li
+                class="list-group-item text-center"
+                *ngIf="profile.bolum?.length != 0 ? true : false"
+              >
+                {{ profile.bolum }}
+              </li>
+              <li
+                class="list-group-item text-center"
+                *ngIf="profile.bolum?.length != 0 ? true : false"
+              >
+                {{ profile.altKategori }}
+              </li>
             </ul>
             <div class="card-body">
               <div class="d-grid gap-2">
-                <button class="btn btn-primary" [routerLink]="['profile',profile.userID]">Detay</button>
+                <button
+                  class="btn btn-primary"
+                  (click)="navigateProfile(profile.userID)"
+                >
+                  Detay
+                </button>
               </div>
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
+  </div>
 </div>
 
 <!-- <div class="container mt-2">

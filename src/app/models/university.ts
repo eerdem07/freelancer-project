@@ -1,4 +1,4 @@
-export class University{
-  key?:string
-  name!:string
+export class University {
+  key?: string;
+  name!: string;
 }
