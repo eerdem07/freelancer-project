@@ -64,46 +64,43 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-6 col-lg-9">
-      <div class="row">
-        <div
-          class="card mt-2"
-          style="width: 15.7rem"
-          *ngFor="let profile of profiles"
-        >
-          <img
-            src="{{ profile.photoUrl }}"
-            class="card-img-top"
-            style="width: 250px; height: 250px"
-          />
-          <div class="card-body">
-            <h5 class="card-title text-center">
-              {{ profile.ad }} {{ profile.soyad }}
-            </h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li
-              class="list-group-item text-center"
-              *ngIf="profile.bolum?.length != 0 ? true : false"
+    <div
+      class="col-8 col-sm-8 col-md-6 col-lg-3"
+      *ngFor="let profile of profiles"
+    >
+      <div class="card mt-2" style="width: 15.7rem">
+        <img
+          src="{{ profile.photoUrl }}"
+          class="card-img-top"
+          style="width: 250px; height: 250px"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-center">
+            {{ profile.ad }} {{ profile.soyad }}
+          </h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li
+            class="list-group-item text-center"
+            *ngIf="profile.bolum?.length != 0 ? true : false"
+          >
+            {{ profile.bolum }}
+          </li>
+          <li
+            class="list-group-item text-center"
+            *ngIf="profile.bolum?.length != 0 ? true : false"
+          >
+            {{ profile.altKategori }}
+          </li>
+        </ul>
+        <div class="card-body">
+          <div class="d-grid gap-2">
+            <button
+              class="btn btn-primary"
+              [routerLink]="['profile', profile.userID]"
             >
-              {{ profile.bolum }}
-            </li>
-            <li
-              class="list-group-item text-center"
-              *ngIf="profile.bolum?.length != 0 ? true : false"
-            >
-              {{ profile.altKategori }}
-            </li>
-          </ul>
-          <div class="card-body">
-            <div class="d-grid gap-2">
-              <button
-                class="btn btn-primary"
-                (click)="navigateProfile(profile.userID)"
-              >
-                Detay
-              </button>
-            </div>
+              Detay
+            </button>
           </div>
         </div>
       </div>
