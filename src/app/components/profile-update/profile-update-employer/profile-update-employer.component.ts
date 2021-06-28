@@ -98,11 +98,7 @@ export class ProfileUpdateEmployerComponent implements OnInit {
         this.nowUser.yetenekler = subcategory2;
         this.realtime.updateAccount(this.nowUser);
       });
-    this.router.navigate(['/']);
-    this.result.message = this.toast.success(
-      'Profil Güncellendi.',
-      'Anasayfaya Yönlendiriliyorsunuz.!'
-    );
+    this.router.navigate(['/profile-update/photo']);
   }
 
   selectedListKey(event: any) {

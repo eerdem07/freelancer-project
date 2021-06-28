@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row mt-5 justify-content-center">
+    <div class="col-6">
+      <div class="card border border-dark">
+        <div class="card-header border-dark">
+          <h4 class="text-center">Dosya Yükle</h4>
+        </div>
+        <div class="card mt-3">
+          <div class="card-body">
+            <div class="input-group">
+              <label class="input-group-text" for="inputGroupFile02"
+                >Fotoğraf Seç</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                aria-label="Upload"
+                (change)="selectDoc($event)"
+              />
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="uploadDoc()"
+              >
+                Fotoğrafı Yükle
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer border-dark">
+          <div class="d-grid gap-2">
+            <button
+              class="btn btn-primary"
+              (click)="updateProfilePhoto()"
+              [disabled]="percent !== 100"
+            >
+              Ekle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

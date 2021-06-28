@@ -5,60 +5,66 @@ import { finalize } from 'rxjs/operators';
 import { Doc } from '../models/doc';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StorageService {
-
-  basePath = '/Docs'
+  basePath = '/Docs';
   constructor(
-    public storage:AngularFireStorage,
-    public db:AngularFireDatabase
-  ) { }
+    public storage: AngularFireStorage,
+    public db: AngularFireDatabase
+  ) {}
 
-  uploadDoc(doc:Doc){
-    let date = new Date()
-    const docPath = this.basePath + '/' + doc.files.name
-    const storageRef = this.storage.ref(docPath)
-    const uploadTask = this.storage.upload(docPath,doc.files)
-    uploadTask.snapshotChanges().pipe(
-      finalize(()=>{
-        storageRef.getDownloadURL().subscribe(urlPath=>{
-          doc.url = urlPath
-          doc.name = doc.files.name
-          doc.date = date.getTime().toString()
-          this.addDocToRTDB(doc)
+  uploadDoc(doc: Doc) {
+    let date = new Date();
+    const docPath = this.basePath + '/' + doc.files.name;
+    const storageRef = this.storage.ref(docPath);
+    const uploadTask = this.storage.upload(docPath, doc.files);
+    uploadTask
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          storageRef.getDownloadURL().subscribe((urlPath) => {
+            doc.url = urlPath;
+            doc.name = doc.files.name;
+            doc.date = date.getTime().toString();
+            this.addDocToRTDB(doc);
+          });
         })
-      })
+      )
+      .subscribe();
 
-    ).subscribe()
-
-    return uploadTask.percentageChanges()
+    return uploadTask.percentageChanges();
   }
 
-  addDocToRTDB(doc:Doc){
-    return this.db.list(this.basePath).push(doc)
+  addDocToRTDB(doc: Doc) {
+    return this.db.list(this.basePath).push(doc);
   }
 
-  listDocs(){
-    return this.db.list(this.basePath)
+  listDocByDocName(docName: any) {
+    console.log(docName);
+    return this.db.list('Docs', (q) => q.orderByChild('name').equalTo(docName));
   }
 
-  listDocsByUid(uid:any){
-    return this.db.list("Docs", q=>q.orderByChild("uid").equalTo(uid))
+  listDocs() {
+    return this.db.list(this.basePath);
   }
 
-  removeDoc(doc:Doc){
-    this.removeDocFromRTDB(doc).then(()=>{
-      this.removeDocFromStorage(doc)
-    })
+  listDocsByUid(uid: any) {
+    return this.db.list('Docs', (q) => q.orderByChild('uid').equalTo(uid));
   }
 
-  removeDocFromStorage(doc:Doc){
-    const storageRef = this.storage.ref(this.basePath)
-    storageRef.child(doc.name).delete()
+  removeDoc(doc: Doc) {
+    this.removeDocFromRTDB(doc).then(() => {
+      this.removeDocFromStorage(doc);
+    });
   }
 
-  removeDocFromRTDB(doc:Doc){
-    return this.db.list(this.basePath).remove(doc.key)
+  removeDocFromStorage(doc: Doc) {
+    const storageRef = this.storage.ref(this.basePath);
+    storageRef.child(doc.name).delete();
+  }
+
+  removeDocFromRTDB(doc: Doc) {
+    return this.db.list(this.basePath).remove(doc.key);
   }
 }

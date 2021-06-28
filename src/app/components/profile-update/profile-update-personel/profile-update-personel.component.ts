@@ -113,11 +113,7 @@ export class ProfileUpdatePersonelComponent implements OnInit {
         this.nowUser.university = university;
         this.realtime.updateAccount(this.nowUser);
       });
-    this.router.navigate(['/']);
-    this.result.message = this.toast.success(
-      'Profil Güncellendi.',
-      'Anasayfaya Yönlendiriliyorsunuz.!'
-    );
+    this.router.navigate(['/profile-update/photo']);
   }
 
   selectedListKey(event: any) {

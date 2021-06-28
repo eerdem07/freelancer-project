@@ -1,3 +1,4 @@
+import { ProfileUpdatePhotoComponent } from './profile-update-photo/profile-update-photo.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'employer',
     component: ProfileUpdateEmployerComponent,
+  },
+  {
+    path: 'photo',
+    component: ProfileUpdatePhotoComponent,
   },
 ];
 

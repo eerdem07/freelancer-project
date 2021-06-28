@@ -49,6 +49,13 @@
             >
               Mesaj Gönder
             </button>
+            <button
+              class="btn btn-outline-success"
+              *ngIf="aliciuid == simdikikullaniciuid"
+              [routerLink]="['/profile-update/photo']"
+            >
+              Profil fotoğrafı değiştir
+            </button>
           </div>
         </div>
       </div>
